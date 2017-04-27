@@ -12,22 +12,17 @@ namespace KURSACH
 {
     public partial class MainForm : Form
     {
+        collegeContext db;
         public MainForm()
         {
             InitializeComponent();
-            using(collegeContext db = new collegeContext())
-            {
-                Mark mk = new Mark();
-                mk.Student = db.Students.FirstOrDefault();
-                mk.Teacher = db.Teachers.FirstOrDefault();
-                mk.Subject = db.Subjects.FirstOrDefault();
-                mk.Type = "LR";
-                mk.Value = "8";
-                mk.Date = DateTime.Now;
+            db = new collegeContext();
+            MessageBox.Show(db.Marks.FirstOrDefault().Value.ToString());
+        }
 
-                db.Marks.Add(mk);
-                db.SaveChanges();
-            }
+        private void crudBtn_Click(object sender, EventArgs e)
+        {
+            new CRUDgroups(db).Show();
         }
     }
 }

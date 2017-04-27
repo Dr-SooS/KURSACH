@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace KURSACH
 {
-    class collegeContext: DbContext
+    public class collegeContext: DbContext
     {
         public collegeContext(): base("collegeContext") { }
 

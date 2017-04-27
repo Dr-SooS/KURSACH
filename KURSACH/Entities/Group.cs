@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KURSACH
 {
-    class Group
+    public class Group
     {
         public int GroupId { get; set; }
         public int Number { get; set; }

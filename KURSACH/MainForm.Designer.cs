@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.crudBtn = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // crudBtn
+            // 
+            this.crudBtn.Location = new System.Drawing.Point(42, 39);
+            this.crudBtn.Name = "crudBtn";
+            this.crudBtn.Size = new System.Drawing.Size(385, 38);
+            this.crudBtn.TabIndex = 0;
+            this.crudBtn.Text = "CRUD Отделений, групп, специальностей";
+            this.crudBtn.UseVisualStyleBackColor = true;
+            this.crudBtn.Click += new System.EventHandler(this.crudBtn_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(471, 253);
+            this.Controls.Add(this.crudBtn);
+            this.Name = "MainForm";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button crudBtn;
     }
 }
 

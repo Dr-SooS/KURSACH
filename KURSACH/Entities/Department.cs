@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KURSACH
 {
-    class Department
+    public class Department
     {
         public int DepartmentId { get; set; }
         public string Name { get; set; }

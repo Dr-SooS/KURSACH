@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace KURSACH
 {
-    class Mark
+    public class Mark
     {
         public int MarkId { get; set; }
         public string Value { get; set; }
-        public string Type { get; set; }
         public DateTime Date { get; set; }
 
         public virtual Student Student { get; set; }
