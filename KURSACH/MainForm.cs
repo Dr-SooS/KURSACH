@@ -17,7 +17,6 @@ namespace KURSACH
         {
             InitializeComponent();
             db = new collegeContext();
-            MessageBox.Show(db.Marks.FirstOrDefault().Value.ToString());
         }
 
         private void crudBtn_Click(object sender, EventArgs e)
