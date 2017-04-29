@@ -38,6 +38,7 @@
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.subjectMarksDataGrid = new System.Windows.Forms.DataGridView();
+            this.saveButton = new System.Windows.Forms.Button();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gropColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.saveButton);
             this.panel1.Controls.Add(this.subjectComboBox);
             this.panel1.Controls.Add(this.subjectListLabel);
             this.panel1.Controls.Add(this.departmentComboBox);
@@ -145,6 +147,17 @@
             this.subjectMarksDataGrid.Name = "subjectMarksDataGrid";
             this.subjectMarksDataGrid.Size = new System.Drawing.Size(1403, 545);
             this.subjectMarksDataGrid.TabIndex = 0;
+            this.subjectMarksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectMarksDataGrid_CellEndEdit);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(1265, 12);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(105, 32);
+            this.saveButton.TabIndex = 9;
+            this.saveButton.Text = "Сохранить";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // studentName
             // 
@@ -162,6 +175,7 @@
             this.gropColumn.Name = "gropColumn";
             this.gropColumn.ReadOnly = true;
             this.gropColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gropColumn.Width = 60;
             // 
             // SubMarks
             // 
@@ -192,6 +206,7 @@
         private System.Windows.Forms.ComboBox subjectComboBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView subjectMarksDataGrid;
+        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
     }

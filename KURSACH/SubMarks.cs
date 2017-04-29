@@ -39,7 +39,7 @@ namespace KURSACH
                 subjectComboBox.Items.Add(sub.Name);
             subjectComboBox.SelectedIndex = 0;
 
-            foreach (var point in db.ControlPoints.OrderBy(P => P.Date))
+            foreach (var point in db.ControlPoints.OrderBy(p => p.Date))
             {
                 subjectMarksDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
                 subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].Width = 45;
@@ -113,6 +113,40 @@ namespace KURSACH
                 selectedSubject = db.Subjects.FirstOrDefault(s => s.Name == subjectComboBox.SelectedItem.ToString());
                 ReloadTable();
             }
+        }
+
+        private void subjectMarksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var cell = subjectMarksDataGrid.CurrentCell;
+            var date = Convert.ToDateTime(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText);
+            var lname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
+            var fname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
+            Mark mark = db.Marks.FirstOrDefault(
+                m => (m.ControlPoint.Date == date) &&
+                (m.Student.FirstName == fname) &&
+                (m.Student.LastName == lname));
+
+            if (cell.Value == null)
+            {
+                if (mark != null)
+                    db.Marks.Remove(mark);
+            }
+            else
+            {
+                if (mark != null)
+                    mark.Value = cell.Value.ToString();
+                else
+                {
+                    var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
+                    var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
+                    db.Marks.Add(new Mark { Value = cell.Value.ToString(), Subject = selectedSubject, Student = stud, ControlPoint = cp });
+                }
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            db.SaveChanges();
         }
     }
 }
