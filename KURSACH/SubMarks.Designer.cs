@@ -39,6 +39,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.subjectMarksDataGrid = new System.Windows.Forms.DataGridView();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gropColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -113,6 +114,7 @@
             this.subjectComboBox.Name = "subjectComboBox";
             this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
             this.subjectComboBox.TabIndex = 7;
+            this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -132,8 +134,12 @@
             // 
             // subjectMarksDataGrid
             // 
+            this.subjectMarksDataGrid.AllowUserToAddRows = false;
+            this.subjectMarksDataGrid.AllowUserToDeleteRows = false;
+            this.subjectMarksDataGrid.AllowUserToResizeRows = false;
             this.subjectMarksDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.studentName});
+            this.studentName,
+            this.gropColumn});
             this.subjectMarksDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.subjectMarksDataGrid.Location = new System.Drawing.Point(0, 50);
             this.subjectMarksDataGrid.Name = "subjectMarksDataGrid";
@@ -142,8 +148,20 @@
             // 
             // studentName
             // 
+            this.studentName.Frozen = true;
             this.studentName.HeaderText = "Имя";
             this.studentName.Name = "studentName";
+            this.studentName.ReadOnly = true;
+            this.studentName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.studentName.Width = 200;
+            // 
+            // gropColumn
+            // 
+            this.gropColumn.Frozen = true;
+            this.gropColumn.HeaderText = "Группа";
+            this.gropColumn.Name = "gropColumn";
+            this.gropColumn.ReadOnly = true;
+            this.gropColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // SubMarks
             // 
@@ -175,5 +193,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView subjectMarksDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
     }
 }

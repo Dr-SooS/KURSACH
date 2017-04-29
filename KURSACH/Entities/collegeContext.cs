@@ -18,5 +18,6 @@ namespace KURSACH
         public DbSet<Group> Groups { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<ControlPoint> ControlPoints { get; set; }
     }
 }

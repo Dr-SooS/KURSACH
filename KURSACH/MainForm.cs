@@ -23,5 +23,10 @@ namespace KURSACH
         {
             new CRUDgroups(db).Show();
         }
+
+        private void subjectsButton_Click(object sender, EventArgs e)
+        {
+            new SubMarks(db).Show();
+        }
     }
 }

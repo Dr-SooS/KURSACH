@@ -17,6 +17,7 @@ namespace KURSACH
         Department selectedDep;
         Specialty selectedSpecialty;
         Group selectedGroup;
+        Subject selectedSubject;
 
         public SubMarks()
         {
@@ -28,22 +29,41 @@ namespace KURSACH
             InitializeComponent();
             this.db = db;
 
-            departmentComboBox.Items.Add("Все отделения");
-            foreach (var dep in db.Departments)
-                departmentComboBox.Items.Add(dep.Name);
-            departmentComboBox.SelectedIndex = 0;
+            //departmentComboBox.Items.Add("Все отделения");
+            //foreach (var dep in db.Departments)
+            //    departmentComboBox.Items.Add(dep.Name);
+            //departmentComboBox.SelectedIndex = 0;
 
-            groupComboBox.Items.Add("Все группы");
-            foreach (var group in db.Groups)
-                groupComboBox.Items.Add(group.Number.ToString());
-            groupComboBox.SelectedIndex = 0;
+            subjectComboBox.Items.Add("Все предметы");
+            foreach (var sub in db.Subjects)
+                subjectComboBox.Items.Add(sub.Name);
+            subjectComboBox.SelectedIndex = 0;
+
+            foreach (var point in db.ControlPoints.OrderBy(P => P.Date))
+            {
+                subjectMarksDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
+                subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].Width = 45;
+                subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            foreach (var g in db.Students.GroupBy(s => s.Group))
+                foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+                {
+                    subjectMarksDataGrid.Rows.Add();
+                    subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                    subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+                }
         }
 
         public void ReloadTable()
         {
-            selectedDep = db.Departments.FirstOrDefault(dep => dep.Name == departmentComboBox.SelectedItem.ToString());
-            selectedSpecialty = db.Specialties.FirstOrDefault(s => s.Name == specialtyComboBox.SelectedItem.ToString());
-            selectedGroup = db.Groups.FirstOrDefault(g => g.Number.ToString() == groupComboBox.SelectedItem.ToString());
+            for (int i = 2; i < subjectMarksDataGrid.ColumnCount; i++)
+                for (int j = 0; j < subjectMarksDataGrid.RowCount; j++)
+                    foreach (var mark in db.Marks)
+                        if ((mark.ControlPoint.Date.ToString("dd.MM yyyy") == subjectMarksDataGrid.Columns[i].HeaderText) && 
+                            (mark.Student.LastName + " " + mark.Student.FirstName == subjectMarksDataGrid[0, j].Value.ToString()) &&
+                            (mark.Subject.Name == selectedSubject.Name))
+                            subjectMarksDataGrid[i, j].Value = mark.Value;
         }
 
         private void departmentComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,6 +104,15 @@ namespace KURSACH
         {
             if (groupComboBox.SelectedIndex != 0)
                 ReloadTable();
+        }
+
+        private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (subjectComboBox.SelectedIndex != 0)
+            {
+                selectedSubject = db.Subjects.FirstOrDefault(s => s.Name == subjectComboBox.SelectedItem.ToString());
+                ReloadTable();
+            }
         }
     }
 }
