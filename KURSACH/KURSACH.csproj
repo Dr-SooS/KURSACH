@@ -72,6 +72,12 @@
     <Compile Include="CRUDgroups.Designer.cs">
       <DependentUpon>CRUDgroups.cs</DependentUpon>
     </Compile>
+    <Compile Include="CPCreateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CPCreateDialog.Designer.cs">
+      <DependentUpon>CPCreateDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\collegeContext.cs" />
     <Compile Include="Entities\ControlPoint.cs" />
     <Compile Include="Entities\Department.cs" />
@@ -110,6 +116,9 @@
     </Compile>
     <EmbeddedResource Include="CRUDgroups.resx">
       <DependentUpon>CRUDgroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CPCreateDialog.resx">
+      <DependentUpon>CPCreateDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

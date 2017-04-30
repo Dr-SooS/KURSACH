@@ -100,6 +100,8 @@ namespace KURSACH
                         subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
                     }
             }
+            if ((subjectComboBox.SelectedIndex != 0) && (teachersComboBox.SelectedIndex != 0))
+                ReloadTable();
         }
 
         private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,6 +145,8 @@ namespace KURSACH
                         }
                 }
             }
+            if ((subjectComboBox.SelectedIndex != 0) && (teachersComboBox.SelectedIndex != 0))
+                ReloadTable();
         }
 
         private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,6 +208,20 @@ namespace KURSACH
         private void saveButton_Click(object sender, EventArgs e)
         {
             db.SaveChanges();
+        }
+
+        private void добавитьКТToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CPCreateDialog(db).ShowDialog();
+
+            for (int i = 2; i < subjectMarksDataGrid.Columns.Count; )
+                subjectMarksDataGrid.Columns.RemoveAt(i);
+            foreach (var point in db.ControlPoints.OrderBy(p => p.Date))
+            {
+                subjectMarksDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
+                subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].Width = 45;
+                subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
     }
 }

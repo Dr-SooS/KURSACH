@@ -41,8 +41,12 @@
             this.subjectMarksDataGrid = new System.Windows.Forms.DataGridView();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gropColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьКТToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // specialtyListLabel
@@ -111,7 +115,7 @@
             this.panel1.Controls.Add(this.groupComboBox);
             this.panel1.Controls.Add(this.specialtyListLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1403, 50);
             this.panel1.TabIndex = 9;
@@ -154,9 +158,9 @@
             this.studentName,
             this.gropColumn});
             this.subjectMarksDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.subjectMarksDataGrid.Location = new System.Drawing.Point(0, 50);
+            this.subjectMarksDataGrid.Location = new System.Drawing.Point(0, 78);
             this.subjectMarksDataGrid.Name = "subjectMarksDataGrid";
-            this.subjectMarksDataGrid.Size = new System.Drawing.Size(1403, 545);
+            this.subjectMarksDataGrid.Size = new System.Drawing.Size(1403, 517);
             this.subjectMarksDataGrid.TabIndex = 0;
             this.subjectMarksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectMarksDataGrid_CellEndEdit);
             // 
@@ -178,6 +182,32 @@
             this.gropColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.gropColumn.Width = 60;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.менюToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1403, 28);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // менюToolStripMenuItem
+            // 
+            this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьКТToolStripMenuItem});
+            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.менюToolStripMenuItem.Text = "Меню";
+            // 
+            // добавитьКТToolStripMenuItem
+            // 
+            this.добавитьКТToolStripMenuItem.Name = "добавитьКТToolStripMenuItem";
+            this.добавитьКТToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.добавитьКТToolStripMenuItem.Text = "Добавить КТ";
+            this.добавитьКТToolStripMenuItem.Click += new System.EventHandler(this.добавитьКТToolStripMenuItem_Click);
+            // 
             // SubMarks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -185,13 +215,17 @@
             this.ClientSize = new System.Drawing.Size(1403, 595);
             this.Controls.Add(this.subjectMarksDataGrid);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "SubMarks";
             this.Text = "SubMarks";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -209,5 +243,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
         private System.Windows.Forms.Label teacherListLabel;
         private System.Windows.Forms.ComboBox teachersComboBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem добавитьКТToolStripMenuItem;
     }
 }
