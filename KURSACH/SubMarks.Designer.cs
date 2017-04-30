@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.departmentComboBox = new System.Windows.Forms.ComboBox();
-            this.departmentListLabel = new System.Windows.Forms.Label();
             this.specialtyListLabel = new System.Windows.Forms.Label();
             this.specialtyComboBox = new System.Windows.Forms.ComboBox();
             this.groupListLabel = new System.Windows.Forms.Label();
@@ -37,36 +35,20 @@
             this.subjectListLabel = new System.Windows.Forms.Label();
             this.subjectComboBox = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.subjectMarksDataGrid = new System.Windows.Forms.DataGridView();
+            this.teacherListLabel = new System.Windows.Forms.Label();
+            this.teachersComboBox = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.subjectMarksDataGrid = new System.Windows.Forms.DataGridView();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gropColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // departmentComboBox
-            // 
-            this.departmentComboBox.FormattingEnabled = true;
-            this.departmentComboBox.Location = new System.Drawing.Point(111, 12);
-            this.departmentComboBox.Name = "departmentComboBox";
-            this.departmentComboBox.Size = new System.Drawing.Size(260, 24);
-            this.departmentComboBox.TabIndex = 0;
-            this.departmentComboBox.SelectedIndexChanged += new System.EventHandler(this.departmentComboBox_SelectedIndexChanged);
-            // 
-            // departmentListLabel
-            // 
-            this.departmentListLabel.AutoSize = true;
-            this.departmentListLabel.Location = new System.Drawing.Point(23, 15);
-            this.departmentListLabel.Name = "departmentListLabel";
-            this.departmentListLabel.Size = new System.Drawing.Size(82, 17);
-            this.departmentListLabel.TabIndex = 1;
-            this.departmentListLabel.Text = "Отделение";
-            // 
             // specialtyListLabel
             // 
             this.specialtyListLabel.AutoSize = true;
-            this.specialtyListLabel.Location = new System.Drawing.Point(377, 15);
+            this.specialtyListLabel.Location = new System.Drawing.Point(662, 18);
             this.specialtyListLabel.Name = "specialtyListLabel";
             this.specialtyListLabel.Size = new System.Drawing.Size(109, 17);
             this.specialtyListLabel.TabIndex = 3;
@@ -75,16 +57,16 @@
             // specialtyComboBox
             // 
             this.specialtyComboBox.FormattingEnabled = true;
-            this.specialtyComboBox.Location = new System.Drawing.Point(492, 12);
+            this.specialtyComboBox.Location = new System.Drawing.Point(777, 15);
             this.specialtyComboBox.Name = "specialtyComboBox";
-            this.specialtyComboBox.Size = new System.Drawing.Size(121, 24);
+            this.specialtyComboBox.Size = new System.Drawing.Size(291, 24);
             this.specialtyComboBox.TabIndex = 2;
             this.specialtyComboBox.SelectedIndexChanged += new System.EventHandler(this.specialtyComboBox_SelectedIndexChanged);
             // 
             // groupListLabel
             // 
             this.groupListLabel.AutoSize = true;
-            this.groupListLabel.Location = new System.Drawing.Point(647, 15);
+            this.groupListLabel.Location = new System.Drawing.Point(1082, 18);
             this.groupListLabel.Name = "groupListLabel";
             this.groupListLabel.Size = new System.Drawing.Size(55, 17);
             this.groupListLabel.TabIndex = 5;
@@ -93,7 +75,7 @@
             // groupComboBox
             // 
             this.groupComboBox.FormattingEnabled = true;
-            this.groupComboBox.Location = new System.Drawing.Point(708, 12);
+            this.groupComboBox.Location = new System.Drawing.Point(1143, 15);
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(121, 24);
             this.groupComboBox.TabIndex = 4;
@@ -102,7 +84,7 @@
             // subjectListLabel
             // 
             this.subjectListLabel.AutoSize = true;
-            this.subjectListLabel.Location = new System.Drawing.Point(857, 15);
+            this.subjectListLabel.Location = new System.Drawing.Point(19, 15);
             this.subjectListLabel.Name = "subjectListLabel";
             this.subjectListLabel.Size = new System.Drawing.Size(66, 17);
             this.subjectListLabel.TabIndex = 8;
@@ -111,7 +93,7 @@
             // subjectComboBox
             // 
             this.subjectComboBox.FormattingEnabled = true;
-            this.subjectComboBox.Location = new System.Drawing.Point(929, 12);
+            this.subjectComboBox.Location = new System.Drawing.Point(91, 12);
             this.subjectComboBox.Name = "subjectComboBox";
             this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
             this.subjectComboBox.TabIndex = 7;
@@ -119,11 +101,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.teacherListLabel);
+            this.panel1.Controls.Add(this.teachersComboBox);
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Controls.Add(this.subjectComboBox);
             this.panel1.Controls.Add(this.subjectListLabel);
-            this.panel1.Controls.Add(this.departmentComboBox);
-            this.panel1.Controls.Add(this.departmentListLabel);
             this.panel1.Controls.Add(this.groupListLabel);
             this.panel1.Controls.Add(this.specialtyComboBox);
             this.panel1.Controls.Add(this.groupComboBox);
@@ -133,6 +115,35 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1403, 50);
             this.panel1.TabIndex = 9;
+            // 
+            // teacherListLabel
+            // 
+            this.teacherListLabel.AutoSize = true;
+            this.teacherListLabel.Location = new System.Drawing.Point(234, 15);
+            this.teacherListLabel.Name = "teacherListLabel";
+            this.teacherListLabel.Size = new System.Drawing.Size(111, 17);
+            this.teacherListLabel.TabIndex = 11;
+            this.teacherListLabel.Text = "Преподаватель";
+            // 
+            // teachersComboBox
+            // 
+            this.teachersComboBox.FormattingEnabled = true;
+            this.teachersComboBox.Location = new System.Drawing.Point(351, 12);
+            this.teachersComboBox.Name = "teachersComboBox";
+            this.teachersComboBox.Size = new System.Drawing.Size(280, 24);
+            this.teachersComboBox.TabIndex = 10;
+            this.teachersComboBox.SelectedIndexChanged += new System.EventHandler(this.teachersComboBox_SelectedIndexChanged);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(1286, 12);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(105, 32);
+            this.saveButton.TabIndex = 9;
+            this.saveButton.Text = "Сохранить";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // subjectMarksDataGrid
             // 
@@ -148,16 +159,6 @@
             this.subjectMarksDataGrid.Size = new System.Drawing.Size(1403, 545);
             this.subjectMarksDataGrid.TabIndex = 0;
             this.subjectMarksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectMarksDataGrid_CellEndEdit);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(1265, 12);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(105, 32);
-            this.saveButton.TabIndex = 9;
-            this.saveButton.Text = "Сохранить";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // studentName
             // 
@@ -195,9 +196,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox departmentComboBox;
-        private System.Windows.Forms.Label departmentListLabel;
         private System.Windows.Forms.Label specialtyListLabel;
         private System.Windows.Forms.ComboBox specialtyComboBox;
         private System.Windows.Forms.Label groupListLabel;
@@ -209,5 +207,7 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
+        private System.Windows.Forms.Label teacherListLabel;
+        private System.Windows.Forms.ComboBox teachersComboBox;
     }
 }
