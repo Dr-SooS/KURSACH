@@ -66,6 +66,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CPDeleteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CPDeleteDialog.Designer.cs">
+      <DependentUpon>CPDeleteDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CPUpdateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CPUpdateDialog.Designer.cs">
+      <DependentUpon>CPUpdateDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="CRUDgroups.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     <Compile Include="SubMarks.Designer.cs">
       <DependentUpon>SubMarks.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CPDeleteDialog.resx">
+      <DependentUpon>CPDeleteDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CPUpdateDialog.resx">
+      <DependentUpon>CPUpdateDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CRUDgroups.resx">
       <DependentUpon>CRUDgroups.cs</DependentUpon>
     </EmbeddedResource>
