@@ -18,16 +18,11 @@ namespace KURSACH
         Group selectedGroup;
         Subject selectedSubject;
         Teacher selectedTeacher;
-
+       
         public SubMarks()
         {
             InitializeComponent();
-        }
-
-        public SubMarks(collegeContext db)
-        {
-            InitializeComponent();
-            this.db = db;
+            db = new collegeContext();
 
             subjectComboBox.Items.Add("Все предметы");
             foreach (var sub in db.Subjects)
@@ -77,6 +72,7 @@ namespace KURSACH
             if (subjectComboBox.SelectedIndex != 0)
                 ReloadTable();
         }
+
 
         private void specialtyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -191,6 +187,7 @@ namespace KURSACH
                 subjectMarksDataGrid.Enabled = false;
         }
 
+
         private void subjectMarksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var cell = subjectMarksDataGrid.CurrentCell;
@@ -225,6 +222,7 @@ namespace KURSACH
             db.SaveChanges();
         }
 
+        //КТ
         private void добавитьКТToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new CPCreateDialog(db).ShowDialog();
@@ -240,6 +238,43 @@ namespace KURSACH
         private void изменитьКТToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new CPUpdateDialog(db).ShowDialog();
+            RefreshColumns();
+        }
+
+
+        //Преподаватели
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TeacherCreate(db).ShowDialog();
+
+            teachersComboBox.Items.Clear();
+            teachersComboBox.Items.Add("Все преподаватели");
+            foreach (var teacher in db.Teachers)
+                teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
+            teachersComboBox.SelectedIndex = 0;
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TeacherUpdate(db).ShowDialog();
+
+            teachersComboBox.Items.Clear();
+            teachersComboBox.Items.Add("Все преподаватели");
+            foreach (var teacher in db.Teachers)
+                teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
+            teachersComboBox.SelectedIndex = 0;
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TeacherDelete(db).ShowDialog();
+
+            teachersComboBox.Items.Clear();
+            teachersComboBox.Items.Add("Все преподаватели");
+            foreach (var teacher in db.Teachers)
+                teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
+            teachersComboBox.SelectedIndex = 0;
+
             RefreshColumns();
         }
     }
