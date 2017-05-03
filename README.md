@@ -1,5 +1,4 @@
 # KURSACH
-CRUD teachers
 CRUD students
 CRUD subjects
 CRUD groups
