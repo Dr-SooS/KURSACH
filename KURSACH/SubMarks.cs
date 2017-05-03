@@ -24,7 +24,7 @@ namespace KURSACH
             InitializeComponent();
             db = new collegeContext();
 
-            subjectComboBox.Items.Add("Все предметы");
+            subjectComboBox.Items.Add("Выберите предмет");
             foreach (var sub in db.Subjects)
                 subjectComboBox.Items.Add(sub.Name);
             subjectComboBox.SelectedIndex = 0;
@@ -38,13 +38,6 @@ namespace KURSACH
             foreach (var spec in db.Specialties)
                 specialtyComboBox.Items.Add(spec.Name);
             specialtyComboBox.SelectedIndex = 0;
-
-            foreach (var point in db.ControlPoints.OrderBy(p => p.Date))
-            {
-                subjectMarksDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
-                subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].Width = 45;
-                subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
         }
 
         public void ReloadTable()
@@ -111,8 +104,7 @@ namespace KURSACH
                         subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
                     }
             }
-            if (subjectComboBox.SelectedIndex != 0)
-                ReloadTable();
+            RefreshColumns();
         }
 
         private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,8 +148,7 @@ namespace KURSACH
                         }
                 }
             }
-            if (subjectComboBox.SelectedIndex != 0)
-                ReloadTable();
+            RefreshColumns();
         }
 
         private void subjectComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,13 +157,13 @@ namespace KURSACH
             {
                 selectedSubject = db.Subjects.FirstOrDefault(s => s.Name == subjectComboBox.SelectedItem.ToString());
                 teachersComboBox.Enabled = true;
-                ReloadTable();
             }
             else
             {
                 subjectMarksDataGrid.Enabled = false;
                 teachersComboBox.Enabled = false;
             }
+            RefreshColumns();
         }
 
         private void teachersComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,10 +172,10 @@ namespace KURSACH
             {
                 selectedTeacher = db.Teachers.FirstOrDefault(t => t.LastName + " " + t.FirstName + " " + t.MiddleName == teachersComboBox.SelectedItem.ToString());
                 subjectMarksDataGrid.Enabled = true;
-                ReloadTable();
             }
             else
                 subjectMarksDataGrid.Enabled = false;
+            RefreshColumns();
         }
 
 
@@ -274,8 +265,41 @@ namespace KURSACH
             foreach (var teacher in db.Teachers)
                 teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
             teachersComboBox.SelectedIndex = 0;
+        }
 
-            RefreshColumns();
+
+        //Предметы
+        private void добавитьПредметToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SubjectCreate(db).ShowDialog();
+
+            subjectComboBox.Items.Clear();
+            subjectComboBox.Items.Add("Выберите предмет");
+            foreach (var sub in db.Subjects)
+                subjectComboBox.Items.Add(sub.Name);
+            subjectComboBox.SelectedIndex = 0;
+        }
+
+        private void изменитьПредметToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SubjectUpdate(db).ShowDialog();
+
+            subjectComboBox.Items.Clear();
+            subjectComboBox.Items.Add("Выберите предмет");
+            foreach (var sub in db.Subjects)
+                subjectComboBox.Items.Add(sub.Name);
+            subjectComboBox.SelectedIndex = 0;
+        }
+
+        private void удалитьПредметToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SubjectDelete(db).ShowDialog();
+
+            subjectComboBox.Items.Clear();
+            subjectComboBox.Items.Add("Выберите предмет");
+            foreach (var sub in db.Subjects)
+                subjectComboBox.Items.Add(sub.Name);
+            subjectComboBox.SelectedIndex = 0;
         }
     }
 }
