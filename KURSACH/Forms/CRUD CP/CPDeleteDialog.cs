@@ -36,7 +36,6 @@ namespace KURSACH
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            db.Marks.RemoveRange(selectedCP.Marks);
             db.ControlPoints.Remove(selectedCP);
             db.SaveChanges();
             Close();

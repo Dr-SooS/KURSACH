@@ -47,17 +47,6 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //foreach (var spec in selectedDepartment.Specialties)
-            //{
-            //    foreach (var group in spec.Groups)
-            //    {
-            //        foreach (var student in group.Students)
-            //            db.Marks.RemoveRange(student.Marks);
-            //        db.Students.RemoveRange(group.Students);
-            //    }
-            //    db.Groups.RemoveRange(spec.Groups);
-            //}
-            //db.Specialties.RemoveRange(selectedDepartment.Specialties);
             db.Departments.Remove(selectedDepartment);
             db.SaveChanges();
             Close();

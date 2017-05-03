@@ -47,7 +47,6 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            db.Marks.RemoveRange(selectedSubject.Marks);
             db.Subjects.Remove(selectedSubject);
             db.SaveChanges();
             Close();
