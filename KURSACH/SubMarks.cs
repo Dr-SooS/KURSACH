@@ -301,5 +301,26 @@ namespace KURSACH
                 subjectComboBox.Items.Add(sub.Name);
             subjectComboBox.SelectedIndex = 0;
         }
+
+        //Отделения
+        private void создатьОтделениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DepartmentCreate(db).ShowDialog();
+        }
+
+        private void изменитьОтделениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DepartmentUpdate(db).ShowDialog();
+        }
+
+        private void удалитьОтделениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DepartmentDelete(db).ShowDialog();
+
+            specialtyComboBox.Items.Add("Все специльности");
+            foreach (var spec in db.Specialties)
+                specialtyComboBox.Items.Add(spec.Name);
+            specialtyComboBox.SelectedIndex = 0;
+        }
     }
 }

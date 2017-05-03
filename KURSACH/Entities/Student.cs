@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace KURSACH
 {
@@ -14,6 +15,7 @@ namespace KURSACH
         public string LastName { get; set; }
         public DateTime Enterance { get; set; }
 
+        [Required]
         public virtual Group Group { get; set; }
         public virtual List<Mark> Marks { get; set; }
     }
