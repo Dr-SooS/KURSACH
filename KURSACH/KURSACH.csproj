@@ -72,6 +72,24 @@
     <Compile Include="Forms\CRUD Departments\DepartmentCreate.Designer.cs">
       <DependentUpon>DepartmentCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CRUD Groups\GroupCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Groups\GroupCreate.Designer.cs">
+      <DependentUpon>GroupCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CRUD Groups\GroupDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Groups\GroupDelete.Designer.cs">
+      <DependentUpon>GroupDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CRUD Groups\GroupUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Groups\GroupUpdate.Designer.cs">
+      <DependentUpon>GroupUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CRUD Specialties\SpecialtyCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +216,15 @@
     </Compile>
     <EmbeddedResource Include="Forms\CRUD Departments\DepartmentCreate.resx">
       <DependentUpon>DepartmentCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Groups\GroupCreate.resx">
+      <DependentUpon>GroupCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Groups\GroupDelete.resx">
+      <DependentUpon>GroupDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Groups\GroupUpdate.resx">
+      <DependentUpon>GroupUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD Specialties\SpecialtyCreate.resx">
       <DependentUpon>SpecialtyCreate.cs</DependentUpon>

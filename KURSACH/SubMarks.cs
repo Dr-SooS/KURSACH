@@ -346,7 +346,7 @@ namespace KURSACH
             specialtyComboBox.SelectedIndex = 0;
         }
 
-        private void удалитьСпециальностьToolStripMenuItem_Click(object sender, EventArgs e)
+		private void удалитьСпециальностьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new SpecialtyDelete(db).ShowDialog();
 
@@ -356,5 +356,39 @@ namespace KURSACH
                 specialtyComboBox.Items.Add(spec.Name);
             specialtyComboBox.SelectedIndex = 0;
         }
-    }
+
+		//Группы
+		private void добавитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new GroupCreate(db).ShowDialog();
+
+			groupComboBox.Items.Clear();
+			groupComboBox.Items.Add("Все группы");
+			foreach (var g in db.Groups)
+				groupComboBox.Items.Add(g.Number.ToString());
+			groupComboBox.SelectedIndex = 0;
+		}
+
+	    private void изменитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
+	    {
+		    new GroupUpdate(db).ShowDialog();
+
+		    groupComboBox.Items.Clear();
+		    groupComboBox.Items.Add("Все группы");
+		    foreach (var g in db.Groups)
+			    groupComboBox.Items.Add(g.Number.ToString());
+		    groupComboBox.SelectedIndex = 0;
+		}
+
+		private void удалитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new GroupDelete(db).ShowDialog();
+
+			groupComboBox.Items.Clear();
+			groupComboBox.Items.Add("Все группы");
+			foreach (var g in db.Groups)
+				groupComboBox.Items.Add(g.Number.ToString());
+			groupComboBox.SelectedIndex = 0;
+		}
+	}
 }
