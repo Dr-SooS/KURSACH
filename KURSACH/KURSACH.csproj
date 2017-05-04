@@ -108,6 +108,24 @@
     <Compile Include="Forms\CRUD Specialties\SpecialtyUpdate.Designer.cs">
       <DependentUpon>SpecialtyUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CRUD Students\StudentCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Students\StudentCreate.Designer.cs">
+      <DependentUpon>StudentCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CRUD Students\StudentDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Students\StudentDelete.Designer.cs">
+      <DependentUpon>StudentDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CRUD Students\StudentUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Students\StudentUpdate.Designer.cs">
+      <DependentUpon>StudentUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CRUD Subjects\SubjectCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,6 +252,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD Specialties\SpecialtyUpdate.resx">
       <DependentUpon>SpecialtyUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Students\StudentCreate.resx">
+      <DependentUpon>StudentCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Students\StudentDelete.resx">
+      <DependentUpon>StudentDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Students\StudentUpdate.resx">
+      <DependentUpon>StudentUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD Subjects\SubjectCreate.resx">
       <DependentUpon>SubjectCreate.cs</DependentUpon>

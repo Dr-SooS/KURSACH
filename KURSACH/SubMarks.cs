@@ -390,5 +390,90 @@ namespace KURSACH
 				groupComboBox.Items.Add(g.Number.ToString());
 			groupComboBox.SelectedIndex = 0;
 		}
+
+		//Студенты
+		private void добавитьСтудентаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new StudentCreate(db).ShowDialog();
+			groupComboBox.SelectedIndex = 0;
+			if (specialtyComboBox.SelectedIndex != 0)
+			{
+				subjectMarksDataGrid.Rows.Clear();
+				foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
+				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+				{
+					subjectMarksDataGrid.Rows.Add();
+					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+				}
+			}
+			else
+			{
+				subjectMarksDataGrid.Rows.Clear();
+				foreach (var g in db.Students.GroupBy(s => s.Group))
+				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+				{
+					subjectMarksDataGrid.Rows.Add();
+					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+				}
+			}
+		}
+
+		private void изменитьСтудентаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new StudentUpdate(db).ShowDialog();
+			groupComboBox.SelectedIndex = 0;
+			if (specialtyComboBox.SelectedIndex != 0)
+			{
+				subjectMarksDataGrid.Rows.Clear();
+				foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
+				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+				{
+					subjectMarksDataGrid.Rows.Add();
+					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+				}
+			}
+			else
+			{
+				subjectMarksDataGrid.Rows.Clear();
+				foreach (var g in db.Students.GroupBy(s => s.Group))
+				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+				{
+					subjectMarksDataGrid.Rows.Add();
+					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+				}
+			}
+		}
+
+		private void удалитьСтудентаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new StudentDelete(db).ShowDialog();
+			groupComboBox.SelectedIndex = 0;
+			if (specialtyComboBox.SelectedIndex != 0)
+			{
+				subjectMarksDataGrid.Rows.Clear();
+				foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
+				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+				{
+					subjectMarksDataGrid.Rows.Add();
+					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+				}
+			}
+			else
+			{
+				subjectMarksDataGrid.Rows.Clear();
+				foreach (var g in db.Students.GroupBy(s => s.Group))
+				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+				{
+					subjectMarksDataGrid.Rows.Add();
+					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+				}
+			}
+		}
 	}
 }
