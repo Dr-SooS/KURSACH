@@ -72,6 +72,24 @@
     <Compile Include="Forms\CRUD Departments\DepartmentCreate.Designer.cs">
       <DependentUpon>DepartmentCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CRUD Specialties\SpecialtyCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Specialties\SpecialtyCreate.Designer.cs">
+      <DependentUpon>SpecialtyCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CRUD Specialties\SpecialtyDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Specialties\SpecialtyDelete.Designer.cs">
+      <DependentUpon>SpecialtyDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CRUD Specialties\SpecialtyUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Specialties\SpecialtyUpdate.Designer.cs">
+      <DependentUpon>SpecialtyUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CRUD Subjects\SubjectCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +198,15 @@
     </Compile>
     <EmbeddedResource Include="Forms\CRUD Departments\DepartmentCreate.resx">
       <DependentUpon>DepartmentCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Specialties\SpecialtyCreate.resx">
+      <DependentUpon>SpecialtyCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Specialties\SpecialtyDelete.resx">
+      <DependentUpon>SpecialtyDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Specialties\SpecialtyUpdate.resx">
+      <DependentUpon>SpecialtyUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD Subjects\SubjectCreate.resx">
       <DependentUpon>SubjectCreate.cs</DependentUpon>
