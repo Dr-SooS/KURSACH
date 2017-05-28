@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Absence.cs" />
     <Compile Include="Forms\CRUD Departments\DepartmentCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +183,7 @@
     <Compile Include="Forms\CRUD Departments\DepartmentUpdate.Designer.cs">
       <DependentUpon>DepartmentUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="LabWork.cs" />
     <Compile Include="Migrations\201704271719376_Initial.cs" />
     <Compile Include="Migrations\201704271719376_Initial.Designer.cs">
       <DependentUpon>201704271719376_Initial.cs</DependentUpon>
@@ -197,6 +199,10 @@
     <Compile Include="Migrations\201705031716221_RequiredFields.cs" />
     <Compile Include="Migrations\201705031716221_RequiredFields.Designer.cs">
       <DependentUpon>201705031716221_RequiredFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705280810424_LabsAndAsences.cs" />
+    <Compile Include="Migrations\201705280810424_LabsAndAsences.Designer.cs">
+      <DependentUpon>201705280810424_LabsAndAsences.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -294,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705031716221_RequiredFields.resx">
       <DependentUpon>201705031716221_RequiredFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705280810424_LabsAndAsences.resx">
+      <DependentUpon>201705280810424_LabsAndAsences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

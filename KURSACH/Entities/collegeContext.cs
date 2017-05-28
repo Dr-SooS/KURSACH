@@ -12,6 +12,8 @@ namespace KURSACH
         public collegeContext(): base("collegeContext") { }
 
         public DbSet<Mark> Marks { get; set; }
+		public DbSet<Absence> Absences { get; set; }
+		public DbSet<LabWork> LabWorks { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }

@@ -49,17 +49,45 @@ namespace KURSACH
                             (mark.Student.LastName + " " + mark.Student.FirstName == subjectMarksDataGrid[0, j].Value.ToString()) &&
                             (mark.Subject.Name == selectedSubject.Name))
                             subjectMarksDataGrid[i, j].Value = mark.Value;
-        }
+
+	        for (int i = 2; i < absencesDataGrid.ColumnCount; i++)
+				for (int j = 0; j < absencesDataGrid.RowCount; j++)
+					foreach (var absen in db.Absences)
+						if ((absen.ControlPoint.Date.ToString("dd.MM yyyy") == absencesDataGrid.Columns[i].HeaderText) &&
+							(absen.Student.LastName + " " + absen.Student.FirstName == absencesDataGrid[0, j].Value.ToString()) &&
+							(absen.Subject.Name == selectedSubject.Name))
+							absencesDataGrid[i, j].Value = absen.Count;
+
+	        for (int i = 2; i < labWorksDataGrid.ColumnCount; i++)
+				for (int j = 0; j < labWorksDataGrid.RowCount; j++)
+					foreach (var work in db.LabWorks)
+						if ((work.ControlPoint.Date.ToString("dd.MM yyyy") == labWorksDataGrid.Columns[i].HeaderText) &&
+							(work.Student.LastName + " " + work.Student.FirstName == labWorksDataGrid[0, j].Value.ToString()) &&
+							(work.Subject.Name == selectedSubject.Name))
+							labWorksDataGrid[i, j].Value = work.NotPassed;
+		}
 
         public void RefreshColumns()
         {
-            for (int i = 2; i < subjectMarksDataGrid.Columns.Count;)
-                subjectMarksDataGrid.Columns.RemoveAt(i);
-            foreach (var point in db.ControlPoints.OrderBy(p => p.Date))
+	        for (int i = 2; i < subjectMarksDataGrid.Columns.Count;)
+	        {
+		        subjectMarksDataGrid.Columns.RemoveAt(i);
+		        absencesDataGrid.Columns.RemoveAt(i);
+		        labWorksDataGrid.Columns.RemoveAt(i);
+			}
+	        foreach (var point in db.ControlPoints.OrderBy(p => p.Date))
             {
                 subjectMarksDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
                 subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].Width = 45;
                 subjectMarksDataGrid.Columns[subjectMarksDataGrid.ColumnCount - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+                absencesDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
+                absencesDataGrid.Columns[absencesDataGrid.ColumnCount - 1].Width = 45;
+                absencesDataGrid.Columns[absencesDataGrid.ColumnCount - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+                labWorksDataGrid.Columns.Add(point.ControlPointId.ToString() + "column", point.Date.ToString("dd.MM yyyy"));
+                labWorksDataGrid.Columns[labWorksDataGrid.ColumnCount - 1].Width = 45;
+                labWorksDataGrid.Columns[labWorksDataGrid.ColumnCount - 1].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
             if (subjectComboBox.SelectedIndex != 0)
@@ -79,12 +107,22 @@ namespace KURSACH
                 groupComboBox.SelectedIndex = 0;
 
                 subjectMarksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
                 foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
                     foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
                     {
                         subjectMarksDataGrid.Rows.Add();
                         subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
                         subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                        absencesDataGrid.Rows.Add();
+                        absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                        absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                        labWorksDataGrid.Rows.Add();
+                        labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                        labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
                     }
             }
             else
@@ -96,12 +134,22 @@ namespace KURSACH
                 groupComboBox.SelectedIndex = 0;
 
                 subjectMarksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
                 foreach (var g in db.Students.GroupBy(s => s.Group))
                     foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
                     {
                         subjectMarksDataGrid.Rows.Add();
                         subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
                         subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                        absencesDataGrid.Rows.Add();
+                        absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                        absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                        labWorksDataGrid.Rows.Add();
+                        labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                        labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
                     }
             }
             RefreshColumns();
@@ -115,12 +163,22 @@ namespace KURSACH
                 selectedGroup = db.Groups.FirstOrDefault(g => g.Number == num);
 
                 subjectMarksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
                 foreach (var g in db.Students.Where(s => s.Group.Number == selectedGroup.Number).GroupBy(s => s.Group))
                     foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
                     {
                         subjectMarksDataGrid.Rows.Add();
                         subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
                         subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                        absencesDataGrid.Rows.Add();
+                        absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                        absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                        labWorksDataGrid.Rows.Add();
+                        labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                        labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
                     }
             }
             else
@@ -128,23 +186,43 @@ namespace KURSACH
                 if (specialtyComboBox.SelectedIndex != 0)
                 {
                     subjectMarksDataGrid.Rows.Clear();
+                    absencesDataGrid.Rows.Clear();
+                    labWorksDataGrid.Rows.Clear();
                     foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
                         foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
                         {
                             subjectMarksDataGrid.Rows.Add();
                             subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
                             subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                            absencesDataGrid.Rows.Add();
+                            absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                            absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                            labWorksDataGrid.Rows.Add();
+                            labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                            labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
                         }
                 }
                 else
                 {
                     subjectMarksDataGrid.Rows.Clear();
+                    absencesDataGrid.Rows.Clear();
+                    labWorksDataGrid.Rows.Clear();
                     foreach (var g in db.Students.GroupBy(s => s.Group))
                         foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
                         {
                             subjectMarksDataGrid.Rows.Add();
                             subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
                             subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                            absencesDataGrid.Rows.Add();
+                            absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                            absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+                            labWorksDataGrid.Rows.Add();
+                            labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+                            labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
                         }
                 }
             }
@@ -161,6 +239,8 @@ namespace KURSACH
             else
             {
                 subjectMarksDataGrid.Enabled = false;
+                absencesDataGrid.Enabled = false;
+                labWorksDataGrid.Enabled = false;
                 teachersComboBox.Enabled = false;
             }
             RefreshColumns();
@@ -168,14 +248,21 @@ namespace KURSACH
 
         private void teachersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (teachersComboBox.SelectedIndex != 0)
-            {
-                selectedTeacher = db.Teachers.FirstOrDefault(t => t.LastName + " " + t.FirstName + " " + t.MiddleName == teachersComboBox.SelectedItem.ToString());
-                subjectMarksDataGrid.Enabled = true;
-            }
-            else
-                subjectMarksDataGrid.Enabled = false;
-            RefreshColumns();
+	        if (teachersComboBox.SelectedIndex != 0)
+	        {
+		        selectedTeacher = db.Teachers.FirstOrDefault(
+			        t => t.LastName + " " + t.FirstName + " " + t.MiddleName == teachersComboBox.SelectedItem.ToString());
+		        subjectMarksDataGrid.Enabled = true;
+		        absencesDataGrid.Enabled = true;
+		        labWorksDataGrid.Enabled = true;
+	        }
+	        else
+	        {
+		        subjectMarksDataGrid.Enabled = false;
+		        absencesDataGrid.Enabled = false;
+		        labWorksDataGrid.Enabled = false;
+	        }
+	        RefreshColumns();
         }
 
 
@@ -208,7 +295,41 @@ namespace KURSACH
             }
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+	    private void absencesDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+	    {
+		    var cell = absencesDataGrid.CurrentCell;
+		    var date = Convert.ToDateTime(absencesDataGrid.Columns[cell.ColumnIndex].HeaderText);
+		    var lname = absencesDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
+		    var fname = absencesDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
+		    Absence absen = db.Absences.FirstOrDefault(
+			    m => (m.ControlPoint.Date == date) &&
+			         (m.Student.FirstName == fname) &&
+			         (m.Student.LastName == lname));
+
+		    if (cell.Value == null)
+		    {
+			    if (absen != null)
+				    db.Absences.Remove(absen);
+		    }
+		    else
+		    {
+			    if (absen != null)
+				    absen.Count = cell.Value.ToString();
+			    else
+			    {
+				    var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
+				    var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
+				    db.Absences.Add(new Absence { Count = cell.Value.ToString(), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
+			    }
+		    }
+		}
+
+	    private void labWorksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+	    {
+
+	    }
+
+		private void saveButton_Click(object sender, EventArgs e)
         {
             db.SaveChanges();
         }
@@ -399,23 +520,39 @@ namespace KURSACH
 			if (specialtyComboBox.SelectedIndex != 0)
 			{
 				subjectMarksDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
 				foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
-				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
-				{
-					subjectMarksDataGrid.Rows.Add();
-					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
-				}
+					foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+					{
+						subjectMarksDataGrid.Rows.Add();
+						subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+						subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+						absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+						absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+						labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+						labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
+					}
 			}
 			else
 			{
 				subjectMarksDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
 				foreach (var g in db.Students.GroupBy(s => s.Group))
 				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
 				{
 					subjectMarksDataGrid.Rows.Add();
 					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
 					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
 				}
 			}
 		}
@@ -427,23 +564,39 @@ namespace KURSACH
 			if (specialtyComboBox.SelectedIndex != 0)
 			{
 				subjectMarksDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
 				foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
 				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
 				{
 					subjectMarksDataGrid.Rows.Add();
 					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
 					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
 				}
 			}
 			else
 			{
 				subjectMarksDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
 				foreach (var g in db.Students.GroupBy(s => s.Group))
 				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
 				{
 					subjectMarksDataGrid.Rows.Add();
 					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
 					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
 				}
 			}
 		}
@@ -455,23 +608,39 @@ namespace KURSACH
 			if (specialtyComboBox.SelectedIndex != 0)
 			{
 				subjectMarksDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
 				foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
 				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
 				{
 					subjectMarksDataGrid.Rows.Add();
 					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
 					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
 				}
 			}
 			else
 			{
 				subjectMarksDataGrid.Rows.Clear();
+                labWorksDataGrid.Rows.Clear();
+                absencesDataGrid.Rows.Clear();
 				foreach (var g in db.Students.GroupBy(s => s.Group))
 				foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
 				{
 					subjectMarksDataGrid.Rows.Add();
 					subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
 					subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+					labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
+					labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
 				}
 			}
 		}
