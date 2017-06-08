@@ -157,12 +157,6 @@
     <Compile Include="Forms\CRUD CP\CPUpdateDialog.Designer.cs">
       <DependentUpon>CPUpdateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="CRUDgroups.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CRUDgroups.Designer.cs">
-      <DependentUpon>CRUDgroups.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\CRUD CP\CPCreateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,7 +177,13 @@
     <Compile Include="Forms\CRUD Departments\DepartmentUpdate.Designer.cs">
       <DependentUpon>DepartmentUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="LabWork.cs" />
+    <Compile Include="GroupStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupStatistics.Designer.cs">
+      <DependentUpon>GroupStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\LabWork.cs" />
     <Compile Include="Migrations\201704271719376_Initial.cs" />
     <Compile Include="Migrations\201704271719376_Initial.Designer.cs">
       <DependentUpon>201704271719376_Initial.cs</DependentUpon>
@@ -277,9 +277,6 @@
     <EmbeddedResource Include="Forms\CRUD CP\CPUpdateDialog.resx">
       <DependentUpon>CPUpdateDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CRUDgroups.resx">
-      <DependentUpon>CRUDgroups.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD CP\CPCreateDialog.resx">
       <DependentUpon>CPCreateDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD Departments\DepartmentUpdate.resx">
       <DependentUpon>DepartmentUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupStatistics.resx">
+      <DependentUpon>GroupStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704271719376_Initial.resx">
       <DependentUpon>201704271719376_Initial.cs</DependentUpon>

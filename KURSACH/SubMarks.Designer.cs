@@ -74,24 +74,25 @@
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.marksTabPage = new System.Windows.Forms.TabPage();
 			this.absencesTabPage = new System.Windows.Forms.TabPage();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.labWorksTabPage = new System.Windows.Forms.TabPage();
 			this.absencesDataGrid = new System.Windows.Forms.DataGridView();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.labWorksTabPage = new System.Windows.Forms.TabPage();
 			this.labWorksDataGrid = new System.Windows.Forms.DataGridView();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl.SuspendLayout();
 			this.marksTabPage.SuspendLayout();
 			this.absencesTabPage.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.labWorksTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.absencesDataGrid)).BeginInit();
+			this.labWorksTabPage.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.labWorksDataGrid)).BeginInit();
+			this.panel2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// specialtyListLabel
@@ -247,7 +248,8 @@
             this.отделениеToolStripMenuItem,
             this.спецмальностиToolStripMenuItem,
             this.группыToolStripMenuItem,
-            this.студентыToolStripMenuItem});
+            this.студентыToolStripMenuItem,
+            this.статистикаToolStripMenuItem});
 			this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
 			this.менюToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
 			this.менюToolStripMenuItem.Text = "Меню";
@@ -503,26 +505,6 @@
 			this.absencesTabPage.Text = "Пропуски";
 			this.absencesTabPage.UseVisualStyleBackColor = true;
 			// 
-			// panel2
-			// 
-			this.panel2.Controls.Add(this.tabControl);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(0, 78);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1403, 517);
-			this.panel2.TabIndex = 12;
-			// 
-			// labWorksTabPage
-			// 
-			this.labWorksTabPage.Controls.Add(this.labWorksDataGrid);
-			this.labWorksTabPage.Location = new System.Drawing.Point(4, 25);
-			this.labWorksTabPage.Name = "labWorksTabPage";
-			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(3);
-			this.labWorksTabPage.Size = new System.Drawing.Size(1395, 488);
-			this.labWorksTabPage.TabIndex = 2;
-			this.labWorksTabPage.Text = "ЛР";
-			this.labWorksTabPage.UseVisualStyleBackColor = true;
-			// 
 			// absencesDataGrid
 			// 
 			this.absencesDataGrid.AllowUserToAddRows = false;
@@ -555,6 +537,17 @@
 			this.dataGridViewTextBoxColumn2.ReadOnly = true;
 			this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.dataGridViewTextBoxColumn2.Width = 60;
+			// 
+			// labWorksTabPage
+			// 
+			this.labWorksTabPage.Controls.Add(this.labWorksDataGrid);
+			this.labWorksTabPage.Location = new System.Drawing.Point(4, 25);
+			this.labWorksTabPage.Name = "labWorksTabPage";
+			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(3);
+			this.labWorksTabPage.Size = new System.Drawing.Size(1395, 488);
+			this.labWorksTabPage.TabIndex = 2;
+			this.labWorksTabPage.Text = "ЛР";
+			this.labWorksTabPage.UseVisualStyleBackColor = true;
 			// 
 			// labWorksDataGrid
 			// 
@@ -589,6 +582,22 @@
 			this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.dataGridViewTextBoxColumn4.Width = 60;
 			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.tabControl);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel2.Location = new System.Drawing.Point(0, 78);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(1403, 517);
+			this.panel2.TabIndex = 12;
+			// 
+			// статистикаToolStripMenuItem
+			// 
+			this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
+			this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+			this.статистикаToolStripMenuItem.Text = "Статистика";
+			this.статистикаToolStripMenuItem.Click += new System.EventHandler(this.статистикаToolStripMenuItem_Click);
+			// 
 			// SubMarks
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -608,10 +617,10 @@
 			this.tabControl.ResumeLayout(false);
 			this.marksTabPage.ResumeLayout(false);
 			this.absencesTabPage.ResumeLayout(false);
-			this.panel2.ResumeLayout(false);
-			this.labWorksTabPage.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.absencesDataGrid)).EndInit();
+			this.labWorksTabPage.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.labWorksDataGrid)).EndInit();
+			this.panel2.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -672,5 +681,6 @@
 		private System.Windows.Forms.DataGridView labWorksDataGrid;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+		private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
 	}
 }

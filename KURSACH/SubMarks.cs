@@ -247,6 +247,7 @@ namespace KURSACH
         }
 
         private void teachersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+
         {
 	        if (teachersComboBox.SelectedIndex != 0)
 	        {
@@ -643,6 +644,11 @@ namespace KURSACH
 					labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
 				}
 			}
+		}
+
+		private void статистикаToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			new GroupStatistics().Show();
 		}
 	}
 }
