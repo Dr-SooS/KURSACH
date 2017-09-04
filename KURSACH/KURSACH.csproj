@@ -163,7 +163,7 @@
     <Compile Include="Forms\CRUD CP\CPCreateDialog.Designer.cs">
       <DependentUpon>CPCreateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\collegeContext.cs" />
+    <Compile Include="Entities\CollegeContext.cs" />
     <Compile Include="Entities\ControlPoint.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Group.cs" />

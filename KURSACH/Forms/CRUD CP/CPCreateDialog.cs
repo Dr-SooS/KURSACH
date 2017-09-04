@@ -17,8 +17,8 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        collegeContext db;
-        public CPCreateDialog(collegeContext db)
+        CollegeContext db;
+        public CPCreateDialog(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

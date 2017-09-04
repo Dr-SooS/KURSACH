@@ -13,13 +13,13 @@ namespace KURSACH
     public partial class SubjectCreate : Form
     {
 
-        collegeContext db;
+        CollegeContext db;
         public SubjectCreate()
         {
             InitializeComponent();
         }
 
-        public SubjectCreate(collegeContext db)
+        public SubjectCreate(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

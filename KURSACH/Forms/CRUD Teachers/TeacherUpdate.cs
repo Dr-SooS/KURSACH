@@ -13,14 +13,14 @@ namespace KURSACH
     public partial class TeacherUpdate : Form
     {
 
-        collegeContext db;
+        CollegeContext db;
         Teacher selectedTeacher;
         public TeacherUpdate()
         {
             InitializeComponent();
         }
 
-        public TeacherUpdate(collegeContext db)
+        public TeacherUpdate(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

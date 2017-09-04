@@ -12,7 +12,7 @@ namespace KURSACH
 {
     public partial class CPDeleteDialog : Form
     {
-        collegeContext db;
+        CollegeContext db;
 
         ControlPoint selectedCP;
 
@@ -21,7 +21,7 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        public CPDeleteDialog(collegeContext db)
+        public CPDeleteDialog(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

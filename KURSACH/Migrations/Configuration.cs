@@ -5,7 +5,7 @@ namespace KURSACH.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<KURSACH.collegeContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<KURSACH.CollegeContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace KURSACH.Migrations
             SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(KURSACH.collegeContext context)
+        protected override void Seed(KURSACH.CollegeContext context)
         {
             //  This method will be called after migrating to the latest version.
 

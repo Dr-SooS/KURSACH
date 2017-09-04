@@ -12,7 +12,7 @@ namespace KURSACH
 {
     public partial class TeacherDelete : Form
     {
-        collegeContext db;
+        CollegeContext db;
         Teacher selectedTeacher;
 
         public TeacherDelete()
@@ -20,7 +20,7 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        public TeacherDelete(collegeContext db)
+        public TeacherDelete(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

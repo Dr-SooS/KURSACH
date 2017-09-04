@@ -7,9 +7,9 @@ using System.Data.Entity;
 
 namespace KURSACH
 {
-    public class collegeContext: DbContext
+    public class CollegeContext: DbContext
     {
-        public collegeContext(): base("collegeContext") { }
+        public CollegeContext(): base("collegeContext") { }
 
         public DbSet<Mark> Marks { get; set; }
 		public DbSet<Absence> Absences { get; set; }

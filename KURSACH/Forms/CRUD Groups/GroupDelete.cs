@@ -13,7 +13,7 @@ namespace KURSACH
     public partial class GroupDelete : Form
     {
 
-        collegeContext db;
+        CollegeContext db;
         Group selectedGroup;
 
         public GroupDelete()
@@ -21,7 +21,7 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        public GroupDelete(collegeContext db)
+        public GroupDelete(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

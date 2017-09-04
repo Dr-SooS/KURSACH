@@ -13,7 +13,7 @@ namespace KURSACH
     public partial class SpecialtyDelete : Form
     {
 
-        collegeContext db;
+        CollegeContext db;
         Specialty selectedSpecialty;
 
         public SpecialtyDelete()
@@ -21,7 +21,7 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        public SpecialtyDelete(collegeContext db)
+        public SpecialtyDelete(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

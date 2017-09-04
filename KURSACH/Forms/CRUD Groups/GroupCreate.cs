@@ -13,14 +13,14 @@ namespace KURSACH
     public partial class GroupCreate : Form
     {
 
-        collegeContext db;
+        CollegeContext db;
         Specialty selectedSpecialty;
         public GroupCreate()
         {
             InitializeComponent();
         }
 
-        public GroupCreate(collegeContext db)
+        public GroupCreate(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

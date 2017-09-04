@@ -12,7 +12,7 @@ namespace KURSACH
 {
     public partial class SubjectUpdate : Form
     {
-        collegeContext db;
+        CollegeContext db;
         Subject selectedSubject;
 
         public SubjectUpdate()
@@ -20,7 +20,7 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        public SubjectUpdate(collegeContext db)
+        public SubjectUpdate(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;

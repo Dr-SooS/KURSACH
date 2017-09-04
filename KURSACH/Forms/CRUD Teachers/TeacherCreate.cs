@@ -12,13 +12,13 @@ namespace KURSACH
 {
     public partial class TeacherCreate : Form
     {
-        collegeContext db;
+        CollegeContext db;
         public TeacherCreate()
         {
             InitializeComponent();
         }
 
-        public TeacherCreate(collegeContext db)
+        public TeacherCreate(CollegeContext db)
         {
             InitializeComponent();
 

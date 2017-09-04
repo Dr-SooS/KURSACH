@@ -12,7 +12,7 @@ namespace KURSACH
 {
     public partial class CPUpdateDialog : Form
     {
-        collegeContext db;
+        CollegeContext db;
 
         ControlPoint selectedCP;
 
@@ -21,7 +21,7 @@ namespace KURSACH
             InitializeComponent();
         }
 
-        public CPUpdateDialog(collegeContext db)
+        public CPUpdateDialog(CollegeContext db)
         {
             InitializeComponent();
             this.db = db;
