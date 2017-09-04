@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculationUtils.cs" />
     <Compile Include="Entities\Absence.cs" />
     <Compile Include="Forms\CRUD Departments\DepartmentCreate.cs">
       <SubType>Form</SubType>

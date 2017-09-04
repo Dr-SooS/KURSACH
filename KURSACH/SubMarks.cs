@@ -526,7 +526,7 @@ namespace KURSACH
 
 		private void статистикаToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			new GroupStatistics().Show();
+			new GroupStatistics(db).Show();
 		}
 	}
 }
