@@ -10,7 +10,7 @@ namespace KURSACH
     public class Mark
     {
         public int MarkId { get; set; }
-        public string Value { get; set; }
+        public int Value { get; set; }
 
         [Required]
         public virtual Student Student { get; set; }

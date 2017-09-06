@@ -250,12 +250,12 @@ namespace KURSACH
             else
             {
                 if (mark != null)
-                    mark.Value = cell.Value.ToString();
+                    mark.Value = (int)cell.Value;
                 else
                 {
                     var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
                     var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-                    db.Marks.Add(new Mark { Value = cell.Value.ToString(), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
+                    db.Marks.Add(new Mark { Value = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
                 }
             }
         }
@@ -279,22 +279,22 @@ namespace KURSACH
 		    else
 		    {
 			    if (absen != null)
-				    absen.Count = cell.Value.ToString();
+				    absen.Count = (int)cell.Value;
 			    else
 			    {
 				    var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
 				    var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-				    db.Absences.Add(new Absence { Count = cell.Value.ToString(), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
+				    db.Absences.Add(new Absence { Count = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
 			    }
 		    }
 		}
 
 	    private void labWorksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 	    {
-			var cell = subjectMarksDataGrid.CurrentCell;
-			var date = Convert.ToDateTime(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText);
-			var lname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
-			var fname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
+			var cell = labWorksDataGrid.CurrentCell;
+			var date = Convert.ToDateTime(labWorksDataGrid.Columns[cell.ColumnIndex].HeaderText);
+			var lname = labWorksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
+			var fname = labWorksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
 			LabWork labWork = db.LabWorks.FirstOrDefault(
 				m => (m.ControlPoint.Date == date) &&
 				(m.Student.FirstName == fname) &&
@@ -308,12 +308,12 @@ namespace KURSACH
 			else
 			{
 				if (labWork != null)
-					labWork.NotPassed = cell.Value.ToString();
+					labWork.NotPassed = (int)cell.Value;
 				else
 				{
 					var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
 					var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-					db.LabWorks.Add(new LabWork { NotPassed = cell.Value.ToString(), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
+					db.LabWorks.Add(new LabWork { NotPassed = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
 				}
 			}
 		}

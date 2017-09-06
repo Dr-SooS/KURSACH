@@ -10,8 +10,8 @@ namespace KURSACH
 	public class Absence
 	{
 		public int AbsenceId { get; set; }
-		public string Count { get; set; }
-		public string RespectCount { get; set; }
+		public int Count { get; set; }
+		public int RespectCount { get; set; }
 
 		[Required]
 		public virtual Student Student { get; set; }

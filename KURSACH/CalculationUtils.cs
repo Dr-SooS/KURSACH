@@ -11,9 +11,30 @@ namespace KURSACH
 		public static int CountStudentsWithBadMarks(CollegeContext db, Group group, ControlPoint cp)
 		{
 			int c = 0;
-			foreach (var m in db.Marks.Where(m => m.Student.Group.Number == group.Number && m.ControlPoint.Date.ToString("dd.MM yyyy") == cp.Date.ToString("dd.MM yyyy")))
-				if (int.Parse(m.Value) < 4)
-					c++;
+			foreach (var m in db.Marks.Where(m => m.Student.Group.Number == group.Number))
+				if (m.ControlPoint.Date == cp.Date)
+					if (m.Value < 4)
+						c++;
+			return c;
+		}
+
+		public static int CountStudentsWithNotPassedLabs(CollegeContext db, Group group, ControlPoint cp)
+		{
+			int c = 0;
+			foreach (var m in db.LabWorks.Where(m => m.Student.Group.Number == group.Number))
+				if (m.ControlPoint.Date == cp.Date)
+					if (m.NotPassed > 0)
+						c++;
+			return c;
+		}
+
+		public static int CountStudentsWithALotOfAbsences(CollegeContext db, Group group, ControlPoint cp)
+		{
+			int c = 0;
+			foreach (var m in db.Absences.Where(m => m.Student.Group.Number == group.Number))
+				if (m.ControlPoint.Date == cp.Date)
+					if (m.Count > 8)
+						c++;
 			return c;
 		}
 	}

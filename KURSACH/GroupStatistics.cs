@@ -35,6 +35,13 @@ namespace KURSACH
 			cpComboBox.SelectedIndex = 0;
 		}
 
+		public void WriteStatistics()
+		{
+			lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
+			notAllLabsLabel.Text = CalculationUtils.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
+			manyAbsLabel.Text = CalculationUtils.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
+		}
+
 		private void specialtyCombobox_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (specialtyComboBox.SelectedIndex != 0)
@@ -64,15 +71,12 @@ namespace KURSACH
 				int num = Convert.ToInt32(groupComboBox.SelectedItem);
 				selectedGroup = db.Groups.FirstOrDefault(g => g.Number == num);
 
+				studentListBox.Items.Clear();
 				foreach (var student in db.Students.Where(s => s.Group.Number == selectedGroup.Number).OrderBy(s => s.LastName).ThenBy(s => s.FirstName))
-				{
 					studentListBox.Items.Add(student.LastName + " " + student.FirstName);
-				}
 
-
-			 	
-				//manyAbsLabel.Text = db.Absences.Where(a => a.Student.Group.Number == selectedGroup.Number && Convert.ToInt32(a.Count) > 8).Count().ToString();
-				//notAllLabsLabel.Text = db.LabWorks.Where(l => l.Student.Group.Number == selectedGroup.Number && Convert.ToInt32(l.NotPassed) > 0).Count().ToString();
+				if (selectedCP != null)
+					WriteStatistics();
 			}
 			else
 			{
@@ -85,12 +89,20 @@ namespace KURSACH
 		{
 			if (cpComboBox.SelectedIndex != 0)
 			{
-				selectedCP = db.ControlPoints.FirstOrDefault(cp => cp.Date.ToString("dd.MM yyyy") == cpComboBox.SelectedItem.ToString());
-				lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
+				foreach (ControlPoint cp in db.ControlPoints)
+					if (cp.Date.ToString("dd.MM yyyy") == cpComboBox.SelectedItem.ToString())
+					{
+						selectedCP = cp;
+						break;
+					}
+				WriteStatistics();
 			}
 			else
 			{
-
+				selectedCP = null;
+				lowMarksLabel.Text = "";
+				notAllLabsLabel.Text = "";
+				manyAbsLabel.Text = "";
 			}
 		}
 	}

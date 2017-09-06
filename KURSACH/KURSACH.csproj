@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201705280810424_LabsAndAsences.Designer.cs">
       <DependentUpon>201705280810424_LabsAndAsences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709060901209_IntToStr.cs" />
+    <Compile Include="Migrations\201709060901209_IntToStr.Designer.cs">
+      <DependentUpon>201709060901209_IntToStr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -304,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705280810424_LabsAndAsences.resx">
       <DependentUpon>201705280810424_LabsAndAsences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709060901209_IntToStr.resx">
+      <DependentUpon>201709060901209_IntToStr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
