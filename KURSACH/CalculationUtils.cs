@@ -37,5 +37,27 @@ namespace KURSACH
 						c++;
 			return c;
 		}
+
+		public static bool IfStudentHasProblems(Student student, ControlPoint cp)
+		{
+			foreach (var mark in student.Marks)
+			{
+				if (mark.ControlPoint == cp && mark.Value < 4)
+					return true;
+			}
+
+			foreach (var abs in student.Absences)
+			{
+				if (abs.ControlPoint == cp && abs.Count > 8)
+					return true;
+			}
+
+			foreach (var lab in student.LabWorks)
+			{
+				if (lab.ControlPoint == cp && lab.NotPassed > 0)
+					return true;
+			}
+			return false;
+		}
 	}
 }

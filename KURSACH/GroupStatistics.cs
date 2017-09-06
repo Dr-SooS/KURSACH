@@ -37,9 +37,12 @@ namespace KURSACH
 
 		public void WriteStatistics()
 		{
-			lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
-			notAllLabsLabel.Text = CalculationUtils.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
-			manyAbsLabel.Text = CalculationUtils.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
+			if (selectedCP != null && selectedGroup != null)
+			{
+				lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
+				notAllLabsLabel.Text = CalculationUtils.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
+				manyAbsLabel.Text = CalculationUtils.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
+			}
 		}
 
 		private void specialtyCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,9 +74,12 @@ namespace KURSACH
 				int num = Convert.ToInt32(groupComboBox.SelectedItem);
 				selectedGroup = db.Groups.FirstOrDefault(g => g.Number == num);
 
-				studentListBox.Items.Clear();
+				studentListView.Items.Clear();
 				foreach (var student in db.Students.Where(s => s.Group.Number == selectedGroup.Number).OrderBy(s => s.LastName).ThenBy(s => s.FirstName))
-					studentListBox.Items.Add(student.LastName + " " + student.FirstName);
+					if (CalculationUtils.IfStudentHasProblems(student, selectedCP))
+						studentListView.Items.Add(student.LastName + " " + student.FirstName).BackColor = Color.Goldenrod;
+					else
+						studentListView.Items.Add(student.LastName + " " + student.FirstName);
 
 				if (selectedCP != null)
 					WriteStatistics();
@@ -81,7 +87,7 @@ namespace KURSACH
 			else
 			{
 				selectedGroup = null;
-				studentListBox.Items.Clear();
+				studentListView.Items.Clear();
 			}
 		}
 
@@ -95,11 +101,16 @@ namespace KURSACH
 						selectedCP = cp;
 						break;
 					}
+				specialtyComboBox.Enabled = true;
+				groupComboBox.Enabled = true;
 				WriteStatistics();
 			}
 			else
 			{
 				selectedCP = null;
+				groupComboBox.SelectedIndex = 0;
+				specialtyComboBox.Enabled = false;
+				groupComboBox.Enabled = false;
 				lowMarksLabel.Text = "";
 				notAllLabsLabel.Text = "";
 				manyAbsLabel.Text = "";

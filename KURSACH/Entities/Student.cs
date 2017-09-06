@@ -18,5 +18,7 @@ namespace KURSACH
         [Required]
         public virtual Group Group { get; set; }
         public virtual List<Mark> Marks { get; set; }
+		public virtual List<Absence> Absences { get; set; }
+		public virtual List<LabWork> LabWorks { get; set; }
     }
 }
