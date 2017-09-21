@@ -42,6 +42,9 @@ namespace KURSACH
 				lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
 				notAllLabsLabel.Text = CalculationUtils.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
 				manyAbsLabel.Text = CalculationUtils.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
+				problemsRichTextBox.Clear();
+				foreach (var problem in CalculationUtils.GetGroupProblemSubjectsTeschers(db, selectedGroup, selectedCP))
+					problemsRichTextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
 			}
 		}
 
@@ -75,7 +78,7 @@ namespace KURSACH
 				selectedGroup = db.Groups.FirstOrDefault(g => g.Number == num);
 
 				studentListView.Items.Clear();
-				foreach (var student in db.Students.Where(s => s.Group.Number == selectedGroup.Number).OrderBy(s => s.LastName).ThenBy(s => s.FirstName))
+				foreach (var student in db.Students.Where(s => s.Group.GroupId == selectedGroup.GroupId).OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList())
 					if (CalculationUtils.IfStudentHasProblems(student, selectedCP))
 						studentListView.Items.Add(student.LastName + " " + student.FirstName).BackColor = Color.Goldenrod;
 					else

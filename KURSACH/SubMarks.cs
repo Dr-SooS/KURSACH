@@ -238,9 +238,11 @@ namespace KURSACH
             var lname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
             var fname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
             Mark mark = db.Marks.FirstOrDefault(
-                m => (m.ControlPoint.Date == date) &&
-                (m.Student.FirstName == fname) &&
-                (m.Student.LastName == lname));
+                m => (m.ControlPoint.Date == date &&
+                m.Student.FirstName == fname &&
+                m.Student.LastName == lname &&
+				m.Teacher.TeacherId == selectedTeacher.TeacherId &&
+				m.Subject.SubjectId == selectedSubject.SubjectId));
 
             if (cell.Value == null)
             {
@@ -250,7 +252,7 @@ namespace KURSACH
             else
             {
                 if (mark != null)
-                    mark.Value = (int)cell.Value;
+                    mark.Value = int.Parse(cell.Value.ToString());
                 else
                 {
                     var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
@@ -266,12 +268,14 @@ namespace KURSACH
 		    var date = Convert.ToDateTime(absencesDataGrid.Columns[cell.ColumnIndex].HeaderText);
 		    var lname = absencesDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
 		    var fname = absencesDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
-		    Absence absen = db.Absences.FirstOrDefault(
-			    m => (m.ControlPoint.Date == date) &&
-			         (m.Student.FirstName == fname) &&
-			         (m.Student.LastName == lname));
+			Absence absen = db.Absences.FirstOrDefault(
+				m => (m.ControlPoint.Date == date &&
+				m.Student.FirstName == fname &&
+				m.Student.LastName == lname &&
+				m.Teacher.TeacherId == selectedTeacher.TeacherId &&
+				m.Subject.SubjectId == selectedSubject.SubjectId));
 
-		    if (cell.Value == null)
+			if (cell.Value == null)
 		    {
 			    if (absen != null)
 				    db.Absences.Remove(absen);
@@ -279,8 +283,8 @@ namespace KURSACH
 		    else
 		    {
 			    if (absen != null)
-				    absen.Count = (int)cell.Value;
-			    else
+				    absen.Count = int.Parse(cell.Value.ToString());
+				else
 			    {
 				    var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
 				    var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
@@ -296,9 +300,11 @@ namespace KURSACH
 			var lname = labWorksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
 			var fname = labWorksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
 			LabWork labWork = db.LabWorks.FirstOrDefault(
-				m => (m.ControlPoint.Date == date) &&
-				(m.Student.FirstName == fname) &&
-				(m.Student.LastName == lname));
+				m => (m.ControlPoint.Date == date &&
+				m.Student.FirstName == fname &&
+				m.Student.LastName == lname &&
+				m.Teacher.TeacherId == selectedTeacher.TeacherId &&
+				m.Subject.SubjectId == selectedSubject.SubjectId));
 
 			if (cell.Value == null)
 			{
@@ -308,7 +314,7 @@ namespace KURSACH
 			else
 			{
 				if (labWork != null)
-					labWork.NotPassed = (int)cell.Value;
+					labWork.NotPassed = int.Parse(cell.Value.ToString());
 				else
 				{
 					var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
