@@ -51,8 +51,17 @@ namespace KURSACH
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
 			foreach (var mark in db.Marks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)))
+				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && mark.Value < 4)
 					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
+
+			foreach (var lab in db.LabWorks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
+				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && lab.NotPassed > 0)
+					res.Add(Tuple.Create(lab.Teacher, lab.Subject));
+
+			foreach (var abs in db.Absences.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
+				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && abs.Count > 8)
+					res.Add(Tuple.Create(abs.Teacher, abs.Subject));
+
 			return res;
 		}
 

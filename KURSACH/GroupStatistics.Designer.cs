@@ -186,10 +186,10 @@
 			// 
 			// problemsRichTextBox
 			// 
-			this.problemsRichTextBox.Location = new System.Drawing.Point(231, 22);
+			this.problemsRichTextBox.Location = new System.Drawing.Point(153, 22);
 			this.problemsRichTextBox.Name = "problemsRichTextBox";
 			this.problemsRichTextBox.ReadOnly = true;
-			this.problemsRichTextBox.Size = new System.Drawing.Size(294, 96);
+			this.problemsRichTextBox.Size = new System.Drawing.Size(294, 110);
 			this.problemsRichTextBox.TabIndex = 6;
 			this.problemsRichTextBox.Text = "";
 			// 
