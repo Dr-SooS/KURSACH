@@ -65,6 +65,24 @@ namespace KURSACH
 			return res;
 		}
 
+		public static List<Tuple<Teacher, Subject>> GetStudentProblemSubjectsTeschers(Student student, ControlPoint cp)
+		{
+			var res = new List<Tuple<Teacher, Subject>>();
+			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
+				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && mark.Value < 4)
+					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
+
+			foreach (var lab in student.LabWorks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
+				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && lab.NotPassed > 0)
+					res.Add(Tuple.Create(lab.Teacher, lab.Subject));
+
+			foreach (var abs in student.Absences.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
+				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && abs.Count > 8)
+					res.Add(Tuple.Create(abs.Teacher, abs.Subject));
+
+			return res;
+		}
+
 		public static bool IfStudentHasProblems(Student student, ControlPoint cp)
 		{
 			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))

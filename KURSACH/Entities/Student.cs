@@ -20,5 +20,10 @@ namespace KURSACH
         public virtual List<Mark> Marks { get; set; }
 		public virtual List<Absence> Absences { get; set; }
 		public virtual List<LabWork> LabWorks { get; set; }
+
+		public override string ToString()
+		{
+			return $"{LastName} {FirstName}";
+		}
     }
 }

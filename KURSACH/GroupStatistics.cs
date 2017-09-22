@@ -17,6 +17,7 @@ namespace KURSACH
 		Specialty selectedSpecialty;
 		Group selectedGroup;
 		ControlPoint selectedCP;
+		Student selectedStudent;
 
 		public GroupStatistics(CollegeContext db)
 		{
@@ -35,17 +36,38 @@ namespace KURSACH
 			cpComboBox.SelectedIndex = 0;
 		}
 
-		public void WriteStatistics()
+		public void WriteGroupStatistics()
 		{
+			groupProblemsRichTextBox.Clear();
 			if (selectedCP != null && selectedGroup != null)
 			{
 				lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
 				notAllLabsLabel.Text = CalculationUtils.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
 				manyAbsLabel.Text = CalculationUtils.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
-				problemsRichTextBox.Clear();
 				foreach (var problem in CalculationUtils.GetGroupProblemSubjectsTeschers(db, selectedGroup, selectedCP))
-					problemsRichTextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
+					groupProblemsRichTextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
 			}
+		}
+
+		public void WriteStudentStatistics()
+		{
+			studentProblemsRichRextBox.Clear();
+			if (selectedStudent != null)
+			{
+				foreach (var problem in CalculationUtils.GetStudentProblemSubjectsTeschers(selectedStudent, selectedCP))
+					studentProblemsRichRextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
+			}
+		}
+
+		public void LoadStudents()
+		{
+			studentListView.Items.Clear();
+			if (selectedGroup != null)
+				foreach (var student in db.Students.Where(s => s.Group.GroupId == selectedGroup.GroupId).OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList())
+					if (CalculationUtils.IfStudentHasProblems(student, selectedCP))
+						studentListView.Items.Add(student.ToString()).BackColor = Color.Goldenrod;
+					else
+						studentListView.Items.Add(student.ToString());
 		}
 
 		private void specialtyCombobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,15 +99,10 @@ namespace KURSACH
 				int num = Convert.ToInt32(groupComboBox.SelectedItem);
 				selectedGroup = db.Groups.FirstOrDefault(g => g.Number == num);
 
-				studentListView.Items.Clear();
-				foreach (var student in db.Students.Where(s => s.Group.GroupId == selectedGroup.GroupId).OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList())
-					if (CalculationUtils.IfStudentHasProblems(student, selectedCP))
-						studentListView.Items.Add(student.LastName + " " + student.FirstName).BackColor = Color.Goldenrod;
-					else
-						studentListView.Items.Add(student.LastName + " " + student.FirstName);
+				LoadStudents();
 
 				if (selectedCP != null)
-					WriteStatistics();
+					WriteGroupStatistics();
 			}
 			else
 			{
@@ -106,7 +123,8 @@ namespace KURSACH
 					}
 				specialtyComboBox.Enabled = true;
 				groupComboBox.Enabled = true;
-				WriteStatistics();
+				WriteGroupStatistics();
+				LoadStudents();
 			}
 			else
 			{
@@ -117,6 +135,16 @@ namespace KURSACH
 				lowMarksLabel.Text = "";
 				notAllLabsLabel.Text = "";
 				manyAbsLabel.Text = "";
+			}
+		}
+
+		private void studentListView_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (studentListView.SelectedItems.Count > 0)
+			{
+				var stud = studentListView.SelectedItems[0].Text;
+				selectedStudent = db.Students.FirstOrDefault(s => s.LastName + " " + s.FirstName == stud);
+				WriteStudentStatistics();
 			}
 		}
 	}
