@@ -66,7 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculationUtils.cs" />
+    <Compile Include="BL.cs" />
     <Compile Include="Entities\Absence.cs" />
     <Compile Include="Forms\CRUD Departments\DepartmentCreate.cs">
       <SubType>Form</SubType>
@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201709061823224_Link from student to labs and abs.Designer.cs">
       <DependentUpon>201709061823224_Link from student to labs and abs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709260831348_AddNoValueFieldToMark.cs" />
+    <Compile Include="Migrations\201709260831348_AddNoValueFieldToMark.Designer.cs">
+      <DependentUpon>201709260831348_AddNoValueFieldToMark.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709061823224_Link from student to labs and abs.resx">
       <DependentUpon>201709061823224_Link from student to labs and abs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709260831348_AddNoValueFieldToMark.resx">
+      <DependentUpon>201709260831348_AddNoValueFieldToMark.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace KURSACH
 {
-	class CalculationUtils
+	class BL
 	{
 		public static int CountStudentsWithBadMarks(CollegeContext db, Group group, ControlPoint cp)
 		{
 			int c = 0;
 			foreach(var student in db.Students.Where(s => s.Group.GroupId == group.GroupId).ToList())
 				foreach (var m in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-					if (m.Value < 4)
+					if (m.Value < 4 || m.NoValue)
 					{
 						c++;
 						break;
@@ -51,7 +51,7 @@ namespace KURSACH
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
 			foreach (var mark in db.Marks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && mark.Value < 4)
+				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && (mark.Value < 4 || mark.NoValue))
 					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
 
 			foreach (var lab in db.LabWorks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
@@ -69,7 +69,7 @@ namespace KURSACH
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
 			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && mark.Value < 4)
+				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && (mark.Value < 4 || mark.NoValue))
 					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
 
 			foreach (var lab in student.LabWorks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
@@ -87,7 +87,7 @@ namespace KURSACH
 		{
 			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
 			{
-				if (mark.Value < 4)
+				if (mark.Value < 4 || mark.NoValue)
 					return true;
 			}
 
@@ -103,6 +103,14 @@ namespace KURSACH
 					return true;
 			}
 			return false;
+		}
+
+		public static dynamic GetStudentStats(ControlPoint cp, Student student)
+		{
+			var marks = cp.Marks.Where(i => i.Student.StudentId == student.StudentId).ToList();
+			var abs = cp.Absences.Where(i => i.Student.StudentId == student.StudentId).ToList();
+			var labs = cp.LabWorks.Where(i => i.Student.StudentId == student.StudentId).ToList();
+			return marks.Zip(abs.Zip(labs, Tuple.Create), (mark, tuple) => new { Mark = mark, Absence = tuple.Item1, LabWork = tuple.Item2 });
 		}
 	}
 }

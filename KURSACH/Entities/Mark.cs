@@ -11,6 +11,7 @@ namespace KURSACH
     {
         public int MarkId { get; set; }
         public int Value { get; set; }
+		public bool NoValue { get; set; }
 
         [Required]
         public virtual Student Student { get; set; }

@@ -45,10 +45,13 @@ namespace KURSACH
             for (int i = 2; i < subjectMarksDataGrid.ColumnCount; i++)
                 for (int j = 0; j < subjectMarksDataGrid.RowCount; j++)
                     foreach (var mark in db.Marks)
-                        if ((mark.ControlPoint.Date.ToString("dd.MM yyyy") == subjectMarksDataGrid.Columns[i].HeaderText) && 
-                            (mark.Student.LastName + " " + mark.Student.FirstName == subjectMarksDataGrid[0, j].Value.ToString()) &&
-                            (mark.Subject.Name == selectedSubject.Name))
-                            subjectMarksDataGrid[i, j].Value = mark.Value;
+						if (mark.NoValue)
+							subjectMarksDataGrid[i, j].Value = "-";
+						else
+							if ((mark.ControlPoint.Date.ToString("dd.MM yyyy") == subjectMarksDataGrid.Columns[i].HeaderText) && 
+								(mark.Student.LastName + " " + mark.Student.FirstName == subjectMarksDataGrid[0, j].Value.ToString()) &&
+								(mark.Subject.Name == selectedSubject.Name))
+								subjectMarksDataGrid[i, j].Value = mark.Value;
 
 	        for (int i = 2; i < absencesDataGrid.ColumnCount; i++)
 				for (int j = 0; j < absencesDataGrid.RowCount; j++)
@@ -251,13 +254,19 @@ namespace KURSACH
             }
             else
             {
-                if (mark != null)
-                    mark.Value = int.Parse(cell.Value.ToString());
+				if (mark != null)
+					if (cell.Value.ToString() == "-")
+						mark.NoValue = true;
+					else
+						mark.Value = int.Parse(cell.Value.ToString());
                 else
                 {
                     var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
                     var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-                    db.Marks.Add(new Mark { Value = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
+					if (cell.Value.ToString() == "-")
+						db.Marks.Add(new Mark {NoValue = true, Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
+					else
+						db.Marks.Add(new Mark { Value = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
                 }
             }
         }

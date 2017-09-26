@@ -36,15 +36,31 @@ namespace KURSACH
 			cpComboBox.SelectedIndex = 0;
 		}
 
+		public void LoadStudentMarks()
+		{
+			studentMarksDataGridView.Rows.Clear();
+			if (selectedStudent != null)
+			{
+				var stats = BL.GetStudentStats(selectedCP, selectedStudent);
+				foreach (var stat in stats)
+				{
+					if (stat.Mark.NoValue)
+						studentMarksDataGridView.Rows.Add(stat.Mark.Subject.Name, "-", stat.Absence.Count.ToString(), stat.LabWork.NotPassed.ToString());
+					else
+						studentMarksDataGridView.Rows.Add(stat.Mark.Subject.Name, stat.Mark.Value.ToString(), stat.Absence.Count.ToString(), stat.LabWork.NotPassed.ToString());
+				}
+			}
+		}
+
 		public void WriteGroupStatistics()
 		{
 			groupProblemsRichTextBox.Clear();
 			if (selectedCP != null && selectedGroup != null)
 			{
-				lowMarksLabel.Text = CalculationUtils.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
-				notAllLabsLabel.Text = CalculationUtils.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
-				manyAbsLabel.Text = CalculationUtils.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
-				foreach (var problem in CalculationUtils.GetGroupProblemSubjectsTeschers(db, selectedGroup, selectedCP))
+				lowMarksLabel.Text = BL.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
+				notAllLabsLabel.Text = BL.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
+				manyAbsLabel.Text = BL.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
+				foreach (var problem in BL.GetGroupProblemSubjectsTeschers(db, selectedGroup, selectedCP))
 					groupProblemsRichTextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
 			}
 		}
@@ -54,7 +70,7 @@ namespace KURSACH
 			studentProblemsRichRextBox.Clear();
 			if (selectedStudent != null)
 			{
-				foreach (var problem in CalculationUtils.GetStudentProblemSubjectsTeschers(selectedStudent, selectedCP))
+				foreach (var problem in BL.GetStudentProblemSubjectsTeschers(selectedStudent, selectedCP))
 					studentProblemsRichRextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
 			}
 		}
@@ -64,7 +80,7 @@ namespace KURSACH
 			studentListView.Items.Clear();
 			if (selectedGroup != null)
 				foreach (var student in db.Students.Where(s => s.Group.GroupId == selectedGroup.GroupId).OrderBy(s => s.LastName).ThenBy(s => s.FirstName).ToList())
-					if (CalculationUtils.IfStudentHasProblems(student, selectedCP))
+					if (BL.IfStudentHasProblems(student, selectedCP))
 						studentListView.Items.Add(student.ToString()).BackColor = Color.Goldenrod;
 					else
 						studentListView.Items.Add(student.ToString());
@@ -144,8 +160,11 @@ namespace KURSACH
 			{
 				var stud = studentListView.SelectedItems[0].Text;
 				selectedStudent = db.Students.FirstOrDefault(s => s.LastName + " " + s.FirstName == stud);
-				WriteStudentStatistics();
 			}
+			else
+				selectedStudent = null;
+			LoadStudentMarks();
+			WriteStudentStatistics();
 		}
 	}
 }

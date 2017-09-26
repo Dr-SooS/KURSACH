@@ -43,8 +43,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.studentInfoPanel = new System.Windows.Forms.Panel();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.studentProblemsRichRextBox = new System.Windows.Forms.RichTextBox();
+			this.studentMarksDataGridView = new System.Windows.Forms.DataGridView();
 			this.subjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.markCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.absCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,7 @@
 			this.panel1.SuspendLayout();
 			this.groupInfoPanel.SuspendLayout();
 			this.studentInfoPanel.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.studentMarksDataGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// filtersPanel
@@ -196,29 +196,13 @@
 			// studentInfoPanel
 			// 
 			this.studentInfoPanel.Controls.Add(this.studentProblemsRichRextBox);
-			this.studentInfoPanel.Controls.Add(this.dataGridView1);
+			this.studentInfoPanel.Controls.Add(this.studentMarksDataGridView);
 			this.studentInfoPanel.Dock = System.Windows.Forms.DockStyle.Right;
 			this.studentInfoPanel.Location = new System.Drawing.Point(154, 203);
 			this.studentInfoPanel.Margin = new System.Windows.Forms.Padding(2);
 			this.studentInfoPanel.Name = "studentInfoPanel";
 			this.studentInfoPanel.Size = new System.Drawing.Size(908, 589);
 			this.studentInfoPanel.TabIndex = 4;
-			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.AllowUserToAddRows = false;
-			this.dataGridView1.AllowUserToDeleteRows = false;
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.subjectName,
-            this.markCol,
-            this.absCol,
-            this.labCol});
-			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.ReadOnly = true;
-			this.dataGridView1.Size = new System.Drawing.Size(501, 400);
-			this.dataGridView1.TabIndex = 0;
 			// 
 			// studentProblemsRichRextBox
 			// 
@@ -228,6 +212,22 @@
 			this.studentProblemsRichRextBox.Size = new System.Drawing.Size(322, 171);
 			this.studentProblemsRichRextBox.TabIndex = 7;
 			this.studentProblemsRichRextBox.Text = "";
+			// 
+			// studentMarksDataGridView
+			// 
+			this.studentMarksDataGridView.AllowUserToAddRows = false;
+			this.studentMarksDataGridView.AllowUserToDeleteRows = false;
+			this.studentMarksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.studentMarksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.subjectName,
+            this.markCol,
+            this.absCol,
+            this.labCol});
+			this.studentMarksDataGridView.Location = new System.Drawing.Point(0, 0);
+			this.studentMarksDataGridView.Name = "studentMarksDataGridView";
+			this.studentMarksDataGridView.ReadOnly = true;
+			this.studentMarksDataGridView.Size = new System.Drawing.Size(322, 400);
+			this.studentMarksDataGridView.TabIndex = 0;
 			// 
 			// subjectName
 			// 
@@ -240,18 +240,21 @@
 			this.markCol.HeaderText = "Оценка";
 			this.markCol.Name = "markCol";
 			this.markCol.ReadOnly = true;
+			this.markCol.Width = 55;
 			// 
 			// absCol
 			// 
 			this.absCol.HeaderText = "Пропуски";
 			this.absCol.Name = "absCol";
 			this.absCol.ReadOnly = true;
+			this.absCol.Width = 65;
 			// 
 			// labCol
 			// 
 			this.labCol.HeaderText = "ЛР";
 			this.labCol.Name = "labCol";
 			this.labCol.ReadOnly = true;
+			this.labCol.Width = 50;
 			// 
 			// GroupStatistics
 			// 
@@ -270,7 +273,7 @@
 			this.groupInfoPanel.ResumeLayout(false);
 			this.groupInfoPanel.PerformLayout();
 			this.studentInfoPanel.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.studentMarksDataGridView)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -292,7 +295,7 @@
 		private System.Windows.Forms.ListView studentListView;
 		private System.Windows.Forms.RichTextBox groupProblemsRichTextBox;
 		private System.Windows.Forms.RichTextBox studentProblemsRichRextBox;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridView studentMarksDataGridView;
 		private System.Windows.Forms.DataGridViewTextBoxColumn subjectName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn markCol;
 		private System.Windows.Forms.DataGridViewTextBoxColumn absCol;
