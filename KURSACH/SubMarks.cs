@@ -44,30 +44,24 @@ namespace KURSACH
         {
             for (int i = 2; i < subjectMarksDataGrid.ColumnCount; i++)
                 for (int j = 0; j < subjectMarksDataGrid.RowCount; j++)
-                    foreach (var mark in db.Marks)
+				{
+					var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[i].HeaderText, "dd.MM yyyy", null);
+					var mark = BL.GetMark(db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, j].Value, selectedSubject);
+					var abs = BL.GetAbsence(db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, j].Value, selectedSubject);
+					var lab = BL.GetLabWork(db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, j].Value, selectedSubject);
+
+					if (mark != null)
 						if (mark.NoValue)
 							subjectMarksDataGrid[i, j].Value = "-";
 						else
-							if ((mark.ControlPoint.Date.ToString("dd.MM yyyy") == subjectMarksDataGrid.Columns[i].HeaderText) && 
-								(mark.Student.LastName + " " + mark.Student.FirstName == subjectMarksDataGrid[0, j].Value.ToString()) &&
-								(mark.Subject.Name == selectedSubject.Name))
-								subjectMarksDataGrid[i, j].Value = mark.Value;
+							subjectMarksDataGrid[i, j].Value = mark.Value;
 
-	        for (int i = 2; i < absencesDataGrid.ColumnCount; i++)
-				for (int j = 0; j < absencesDataGrid.RowCount; j++)
-					foreach (var absen in db.Absences)
-						if ((absen.ControlPoint.Date.ToString("dd.MM yyyy") == absencesDataGrid.Columns[i].HeaderText) &&
-							(absen.Student.LastName + " " + absen.Student.FirstName == absencesDataGrid[0, j].Value.ToString()) &&
-							(absen.Subject.Name == selectedSubject.Name))
-							absencesDataGrid[i, j].Value = absen.Count;
+					if (abs != null)
+						absencesDataGrid[i, j].Value = abs.Count;
 
-	        for (int i = 2; i < labWorksDataGrid.ColumnCount; i++)
-				for (int j = 0; j < labWorksDataGrid.RowCount; j++)
-					foreach (var work in db.LabWorks)
-						if ((work.ControlPoint.Date.ToString("dd.MM yyyy") == labWorksDataGrid.Columns[i].HeaderText) &&
-							(work.Student.LastName + " " + work.Student.FirstName == labWorksDataGrid[0, j].Value.ToString()) &&
-							(work.Subject.Name == selectedSubject.Name))
-							labWorksDataGrid[i, j].Value = work.NotPassed;
+					if (lab != null)
+						labWorksDataGrid[i, j].Value = lab.NotPassed;
+				}
 		}
 
         public void RefreshColumns()
@@ -98,6 +92,24 @@ namespace KURSACH
                 LoadMarks();
         }
 
+		public void AddOrderedStugentsToDataGrid(IGrouping<Group, Student> g)
+		{
+			foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
+			{
+				subjectMarksDataGrid.Rows.Add();
+				subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud;
+				subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+				absencesDataGrid.Rows.Add();
+				absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud;
+				absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
+
+				labWorksDataGrid.Rows.Add();
+				labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud;
+				labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
+			}
+		}
+
 		public void LoadStudents()
 		{
 			subjectMarksDataGrid.Rows.Clear();
@@ -108,56 +120,17 @@ namespace KURSACH
 				if(selectedSpecialty == null)
 				{
 					foreach (var g in db.Students.GroupBy(s => s.Group))
-						foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
-						{
-							subjectMarksDataGrid.Rows.Add();
-							subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-							subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
-
-							absencesDataGrid.Rows.Add();
-							absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-							absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
-
-							labWorksDataGrid.Rows.Add();
-							labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-							labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
-						}
+						AddOrderedStugentsToDataGrid(g);
 				}
 				else
 				{
 					foreach (var g in db.Students.Where(s => s.Group.Specialty.Name == specialtyComboBox.SelectedItem.ToString()).GroupBy(s => s.Group))
-						foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
-						{
-							subjectMarksDataGrid.Rows.Add();
-							subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-							subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
-
-							absencesDataGrid.Rows.Add();
-							absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-							absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
-
-							labWorksDataGrid.Rows.Add();
-							labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-							labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
-						}
+						AddOrderedStugentsToDataGrid(g);
 				}
 			else
 			{
 				foreach (var g in db.Students.Where(s => s.Group.Number == selectedGroup.Number).GroupBy(s => s.Group))
-					foreach (var stud in g.OrderBy(s => s.LastName).ThenBy(S => S.FirstName))
-					{
-						subjectMarksDataGrid.Rows.Add();
-						subjectMarksDataGrid[0, subjectMarksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-						subjectMarksDataGrid[1, subjectMarksDataGrid.RowCount - 1].Value = stud.Group.Number;
-
-						absencesDataGrid.Rows.Add();
-						absencesDataGrid[0, absencesDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-						absencesDataGrid[1, absencesDataGrid.RowCount - 1].Value = stud.Group.Number;
-
-						labWorksDataGrid.Rows.Add();
-						labWorksDataGrid[0, labWorksDataGrid.RowCount - 1].Value = stud.LastName + " " + stud.FirstName;
-						labWorksDataGrid[1, labWorksDataGrid.RowCount - 1].Value = stud.Group.Number;
-					}
+					AddOrderedStugentsToDataGrid(g);
 			}
 		}
 
@@ -237,38 +210,8 @@ namespace KURSACH
         private void subjectMarksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var cell = subjectMarksDataGrid.CurrentCell;
-            var date = Convert.ToDateTime(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText);
-            var lname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
-            var fname = subjectMarksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
-            Mark mark = db.Marks.FirstOrDefault(
-                m => (m.ControlPoint.Date == date &&
-                m.Student.FirstName == fname &&
-                m.Student.LastName == lname &&
-				m.Teacher.TeacherId == selectedTeacher.TeacherId &&
-				m.Subject.SubjectId == selectedSubject.SubjectId));
-
-            if (cell.Value == null)
-            {
-                if (mark != null)
-                    db.Marks.Remove(mark);
-            }
-            else
-            {
-				if (mark != null)
-					if (cell.Value.ToString() == "-")
-						mark.NoValue = true;
-					else
-						mark.Value = int.Parse(cell.Value.ToString());
-                else
-                {
-                    var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
-                    var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-					if (cell.Value.ToString() == "-")
-						db.Marks.Add(new Mark {NoValue = true, Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
-					else
-						db.Marks.Add(new Mark { Value = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
-                }
-            }
+            var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText, "dd.MM yyyy", null);
+			BL.EditMark(db, db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, cell.RowIndex].Value, selectedSubject, selectedTeacher, cell.Value.ToString());
         }
 
 	    private void absencesDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)

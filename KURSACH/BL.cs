@@ -8,12 +8,70 @@ namespace KURSACH
 {
 	class BL
 	{
+		public static Mark GetMark(ControlPoint cp, Student student, Subject subject)
+		{
+			return subject.Marks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId);
+		}
+
+		public static Absence GetAbsence(ControlPoint cp, Student student, Subject subject)
+		{
+			return subject.Absences.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId);
+		}
+
+		public static LabWork GetLabWork(ControlPoint cp, Student student, Subject subject)
+		{
+			return subject.LabWorks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId);
+		}
+
+		public static void EditMark(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
+		{
+			var mark = subject.Marks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
+			if (newValue == null)
+			{
+				if (mark != null)
+					db.Marks.Remove(mark);
+			}
+			else
+			{
+				if (mark != null)
+					if (newValue == "-")
+						mark.NoValue = true;
+					else
+					{
+						mark.NoValue = false;
+						mark.Value = int.Parse(newValue);
+					}
+				else
+				{
+					if (newValue == "-")
+						db.Marks.Add(new Mark { NoValue = true, Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher});
+					else
+						db.Marks.Add(new Mark { Value = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher});
+				}
+			}
+		}
+
+		public static bool MarkIsBad(Mark mark)
+		{
+			return mark.Value < 4 || mark.NoValue;
+		}
+
+		public static bool AbsenceIsBad(Absence absence)
+		{
+			return absence.Count > 8;
+		}
+
+		public static bool LabWorkIsBad(LabWork labWork)
+		{
+			return labWork.NotPassed > 0;
+		}
+
 		public static int CountStudentsWithBadMarks(CollegeContext db, Group group, ControlPoint cp)
 		{
 			int c = 0;
 			foreach(var student in db.Students.Where(s => s.Group.GroupId == group.GroupId).ToList())
 				foreach (var m in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-					if (m.Value < 4 || m.NoValue)
+					if (MarkIsBad(m))
 					{
 						c++;
 						break;
@@ -26,7 +84,7 @@ namespace KURSACH
 			int c = 0;
 			foreach (var student in db.Students.Where(s => s.Group.GroupId == group.GroupId).ToList())
 				foreach (var m in student.LabWorks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-					if (m.NotPassed > 0)
+					if (LabWorkIsBad(m))
 					{
 						c++;
 						break;
@@ -39,7 +97,7 @@ namespace KURSACH
 			int c = 0;
 			foreach (var student in db.Students.Where(s => s.Group.GroupId == group.GroupId).ToList())
 				foreach (var m in student.Absences.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-					if (m.Count > 8)
+					if (AbsenceIsBad(m))
 					{
 						c++;
 						break;
@@ -51,15 +109,15 @@ namespace KURSACH
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
 			foreach (var mark in db.Marks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && (mark.Value < 4 || mark.NoValue))
+				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && MarkIsBad(mark))
 					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
 
 			foreach (var lab in db.LabWorks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && lab.NotPassed > 0)
+				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && LabWorkIsBad(lab))
 					res.Add(Tuple.Create(lab.Teacher, lab.Subject));
 
 			foreach (var abs in db.Absences.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && abs.Count > 8)
+				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && AbsenceIsBad(abs))
 					res.Add(Tuple.Create(abs.Teacher, abs.Subject));
 
 			return res;
@@ -69,15 +127,15 @@ namespace KURSACH
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
 			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && (mark.Value < 4 || mark.NoValue))
+				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && MarkIsBad(mark))
 					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
 
 			foreach (var lab in student.LabWorks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && lab.NotPassed > 0)
+				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && LabWorkIsBad(lab))
 					res.Add(Tuple.Create(lab.Teacher, lab.Subject));
 
 			foreach (var abs in student.Absences.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && abs.Count > 8)
+				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && AbsenceIsBad(abs))
 					res.Add(Tuple.Create(abs.Teacher, abs.Subject));
 
 			return res;
@@ -87,19 +145,19 @@ namespace KURSACH
 		{
 			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
 			{
-				if (mark.Value < 4 || mark.NoValue)
+				if (MarkIsBad(mark))
 					return true;
 			}
 
 			foreach (var abs in student.Absences.Where(a => a.ControlPoint.ControlPointId == cp.ControlPointId))
 			{
-				if (abs.Count > 8)
+				if (AbsenceIsBad(abs))
 					return true;
 			}
 
 			foreach (var lab in student.LabWorks.Where(s => s.ControlPoint.ControlPointId == cp.ControlPointId))
 			{
-				if (lab.ControlPoint == cp && lab.NotPassed > 0)
+				if (LabWorkIsBad(lab))
 					return true;
 			}
 			return false;

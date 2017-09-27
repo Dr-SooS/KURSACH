@@ -48,6 +48,12 @@ namespace KURSACH
 						studentMarksDataGridView.Rows.Add(stat.Mark.Subject.Name, "-", stat.Absence.Count.ToString(), stat.LabWork.NotPassed.ToString());
 					else
 						studentMarksDataGridView.Rows.Add(stat.Mark.Subject.Name, stat.Mark.Value.ToString(), stat.Absence.Count.ToString(), stat.LabWork.NotPassed.ToString());
+					if (BL.MarkIsBad(stat.Mark))
+						studentMarksDataGridView[1, studentMarksDataGridView.RowCount - 1].Style.BackColor = Color.Goldenrod;
+					if (BL.AbsenceIsBad(stat.Absence))
+						studentMarksDataGridView[2, studentMarksDataGridView.RowCount - 1].Style.BackColor = Color.Goldenrod;
+					if (BL.LabWorkIsBad(stat.LabWork))
+						studentMarksDataGridView[3, studentMarksDataGridView.RowCount - 1].Style.BackColor = Color.Goldenrod;
 				}
 			}
 		}
