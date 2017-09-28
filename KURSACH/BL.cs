@@ -51,6 +51,44 @@ namespace KURSACH
 			}
 		}
 
+		public static void EditAbsence(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
+		{
+			var absence = subject.Absences.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
+			if (newValue == null)
+			{
+				if (absence != null)
+					db.Absences.Remove(absence);
+			}
+			else
+			{
+				if (absence != null)
+					absence.Count = int.Parse(newValue);
+				else
+				{
+					db.Absences.Add(new Absence { Count = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher });
+				}
+			}
+		}
+
+		public static void EditLabWork(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
+		{
+			var lab = subject.LabWorks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
+			if (newValue == null)
+			{
+				if (lab != null)
+					db.LabWorks.Remove(lab);
+			}
+			else
+			{
+				if (lab != null)
+					lab.NotPassed = int.Parse(newValue);
+				else
+				{
+					db.LabWorks.Add(new LabWork { NotPassed = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher });
+				}
+			}
+		}
+
 		public static bool MarkIsBad(Mark mark)
 		{
 			return mark.Value < 4 || mark.NoValue;
@@ -144,22 +182,16 @@ namespace KURSACH
 		public static bool IfStudentHasProblems(Student student, ControlPoint cp)
 		{
 			foreach (var mark in student.Marks.Where(m => m.ControlPoint.ControlPointId == cp.ControlPointId))
-			{
 				if (MarkIsBad(mark))
 					return true;
-			}
 
 			foreach (var abs in student.Absences.Where(a => a.ControlPoint.ControlPointId == cp.ControlPointId))
-			{
 				if (AbsenceIsBad(abs))
 					return true;
-			}
 
 			foreach (var lab in student.LabWorks.Where(s => s.ControlPoint.ControlPointId == cp.ControlPointId))
-			{
 				if (LabWorkIsBad(lab))
 					return true;
-			}
 			return false;
 		}
 

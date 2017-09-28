@@ -217,63 +217,15 @@ namespace KURSACH
 	    private void absencesDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 	    {
 		    var cell = absencesDataGrid.CurrentCell;
-		    var date = Convert.ToDateTime(absencesDataGrid.Columns[cell.ColumnIndex].HeaderText);
-		    var lname = absencesDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
-		    var fname = absencesDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
-			Absence absen = db.Absences.FirstOrDefault(
-				m => (m.ControlPoint.Date == date &&
-				m.Student.FirstName == fname &&
-				m.Student.LastName == lname &&
-				m.Teacher.TeacherId == selectedTeacher.TeacherId &&
-				m.Subject.SubjectId == selectedSubject.SubjectId));
-
-			if (cell.Value == null)
-		    {
-			    if (absen != null)
-				    db.Absences.Remove(absen);
-		    }
-		    else
-		    {
-			    if (absen != null)
-				    absen.Count = int.Parse(cell.Value.ToString());
-				else
-			    {
-				    var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
-				    var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-				    db.Absences.Add(new Absence { Count = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
-			    }
-		    }
+			var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText, "dd.MM yyyy", null);
+			BL.EditAbsence(db, db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, cell.RowIndex].Value, selectedSubject, selectedTeacher, cell.Value.ToString());
 		}
 
-	    private void labWorksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+		private void labWorksDataGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 	    {
 			var cell = labWorksDataGrid.CurrentCell;
-			var date = Convert.ToDateTime(labWorksDataGrid.Columns[cell.ColumnIndex].HeaderText);
-			var lname = labWorksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[0];
-			var fname = labWorksDataGrid[0, cell.RowIndex].Value.ToString().Split(' ')[1];
-			LabWork labWork = db.LabWorks.FirstOrDefault(
-				m => (m.ControlPoint.Date == date &&
-				m.Student.FirstName == fname &&
-				m.Student.LastName == lname &&
-				m.Teacher.TeacherId == selectedTeacher.TeacherId &&
-				m.Subject.SubjectId == selectedSubject.SubjectId));
-
-			if (cell.Value == null)
-			{
-				if (labWork != null)
-					db.LabWorks.Remove(labWork);
-			}
-			else
-			{
-				if (labWork != null)
-					labWork.NotPassed = int.Parse(cell.Value.ToString());
-				else
-				{
-					var cp = db.ControlPoints.FirstOrDefault(c => c.Date == date);
-					var stud = db.Students.FirstOrDefault(st => (st.FirstName == fname) && (st.LastName == lname));
-					db.LabWorks.Add(new LabWork { NotPassed = int.Parse(cell.Value.ToString()), Subject = selectedSubject, Student = stud, ControlPoint = cp, Teacher = selectedTeacher });
-				}
-			}
+			var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText, "dd.MM yyyy", null);
+			BL.EditLabWork(db, db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, cell.RowIndex].Value, selectedSubject, selectedTeacher, cell.Value.ToString());
 		}
 
 
