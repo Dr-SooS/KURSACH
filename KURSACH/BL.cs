@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OfficeOpenXml;
 
 namespace KURSACH
 {
@@ -201,6 +203,14 @@ namespace KURSACH
 			var abs = cp.Absences.Where(i => i.Student.StudentId == student.StudentId).ToList();
 			var labs = cp.LabWorks.Where(i => i.Student.StudentId == student.StudentId).ToList();
 			return marks.Zip(abs.Zip(labs, Tuple.Create), (mark, tuple) => new { Mark = mark, Absence = tuple.Item1, LabWork = tuple.Item2 });
+		}
+
+		public static void StatsToExcel(string filename, CollegeContext db)
+		{
+			ExcelPackage ExcelPkg = new ExcelPackage();
+			ExcelWorksheet wsSheet1 = ExcelPkg.Workbook.Worksheets.Add("Sheet1");
+			//
+			ExcelPkg.SaveAs(new FileInfo(@"C:\KURSACH\s.xlsx"));
 		}
 	}
 }

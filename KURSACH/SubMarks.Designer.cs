@@ -39,6 +39,8 @@
 			this.teachersComboBox = new System.Windows.Forms.ComboBox();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.subjectMarksDataGrid = new System.Windows.Forms.DataGridView();
+			this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.gropColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.кТToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,8 +83,7 @@
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.gropColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.button1 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -157,6 +158,7 @@
 			// 
 			// panel1
 			// 
+			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.teacherListLabel);
 			this.panel1.Controls.Add(this.teachersComboBox);
 			this.panel1.Controls.Add(this.saveButton);
@@ -220,6 +222,25 @@
 			this.subjectMarksDataGrid.Size = new System.Drawing.Size(1145, 515);
 			this.subjectMarksDataGrid.TabIndex = 0;
 			this.subjectMarksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectMarksDataGrid_CellEndEdit);
+			// 
+			// studentName
+			// 
+			this.studentName.Frozen = true;
+			this.studentName.HeaderText = "Имя";
+			this.studentName.Name = "studentName";
+			this.studentName.ReadOnly = true;
+			this.studentName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.studentName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.studentName.Width = 200;
+			// 
+			// gropColumn
+			// 
+			this.gropColumn.Frozen = true;
+			this.gropColumn.HeaderText = "Группа";
+			this.gropColumn.Name = "gropColumn";
+			this.gropColumn.ReadOnly = true;
+			this.gropColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.gropColumn.Width = 60;
 			// 
 			// menuStrip1
 			// 
@@ -599,24 +620,15 @@
 			this.panel2.Size = new System.Drawing.Size(1157, 545);
 			this.panel2.TabIndex = 12;
 			// 
-			// studentName
+			// button1
 			// 
-			this.studentName.Frozen = true;
-			this.studentName.HeaderText = "Имя";
-			this.studentName.Name = "studentName";
-			this.studentName.ReadOnly = true;
-			this.studentName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.studentName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.studentName.Width = 200;
-			// 
-			// gropColumn
-			// 
-			this.gropColumn.Frozen = true;
-			this.gropColumn.HeaderText = "Группа";
-			this.gropColumn.Name = "gropColumn";
-			this.gropColumn.ReadOnly = true;
-			this.gropColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.gropColumn.Width = 60;
+			this.button1.Location = new System.Drawing.Point(979, 12);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 12;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// SubMarks
 			// 
@@ -703,5 +715,6 @@
 		private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
 		private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
+		private System.Windows.Forms.Button button1;
 	}
 }
