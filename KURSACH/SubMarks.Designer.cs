@@ -83,7 +83,6 @@
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.button1 = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -99,66 +98,62 @@
 			// specialtyListLabel
 			// 
 			this.specialtyListLabel.AutoSize = true;
-			this.specialtyListLabel.Location = new System.Drawing.Point(496, 15);
-			this.specialtyListLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.specialtyListLabel.Location = new System.Drawing.Point(661, 18);
 			this.specialtyListLabel.Name = "specialtyListLabel";
-			this.specialtyListLabel.Size = new System.Drawing.Size(85, 13);
+			this.specialtyListLabel.Size = new System.Drawing.Size(109, 17);
 			this.specialtyListLabel.TabIndex = 3;
 			this.specialtyListLabel.Text = "Специальность";
 			// 
 			// specialtyComboBox
 			// 
 			this.specialtyComboBox.FormattingEnabled = true;
-			this.specialtyComboBox.Location = new System.Drawing.Point(583, 12);
-			this.specialtyComboBox.Margin = new System.Windows.Forms.Padding(2);
+			this.specialtyComboBox.Location = new System.Drawing.Point(777, 15);
+			this.specialtyComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.specialtyComboBox.Name = "specialtyComboBox";
-			this.specialtyComboBox.Size = new System.Drawing.Size(219, 21);
+			this.specialtyComboBox.Size = new System.Drawing.Size(291, 24);
 			this.specialtyComboBox.TabIndex = 2;
 			this.specialtyComboBox.SelectedIndexChanged += new System.EventHandler(this.specialtyComboBox_SelectedIndexChanged);
 			// 
 			// groupListLabel
 			// 
 			this.groupListLabel.AutoSize = true;
-			this.groupListLabel.Location = new System.Drawing.Point(812, 15);
-			this.groupListLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.groupListLabel.Location = new System.Drawing.Point(1083, 18);
 			this.groupListLabel.Name = "groupListLabel";
-			this.groupListLabel.Size = new System.Drawing.Size(42, 13);
+			this.groupListLabel.Size = new System.Drawing.Size(55, 17);
 			this.groupListLabel.TabIndex = 5;
 			this.groupListLabel.Text = "Группа";
 			// 
 			// groupComboBox
 			// 
 			this.groupComboBox.FormattingEnabled = true;
-			this.groupComboBox.Location = new System.Drawing.Point(857, 12);
-			this.groupComboBox.Margin = new System.Windows.Forms.Padding(2);
+			this.groupComboBox.Location = new System.Drawing.Point(1143, 15);
+			this.groupComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupComboBox.Name = "groupComboBox";
-			this.groupComboBox.Size = new System.Drawing.Size(92, 21);
+			this.groupComboBox.Size = new System.Drawing.Size(121, 24);
 			this.groupComboBox.TabIndex = 4;
 			this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
 			// 
 			// subjectListLabel
 			// 
 			this.subjectListLabel.AutoSize = true;
-			this.subjectListLabel.Location = new System.Drawing.Point(14, 12);
-			this.subjectListLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.subjectListLabel.Location = new System.Drawing.Point(19, 15);
 			this.subjectListLabel.Name = "subjectListLabel";
-			this.subjectListLabel.Size = new System.Drawing.Size(52, 13);
+			this.subjectListLabel.Size = new System.Drawing.Size(66, 17);
 			this.subjectListLabel.TabIndex = 8;
 			this.subjectListLabel.Text = "Предмет";
 			// 
 			// subjectComboBox
 			// 
 			this.subjectComboBox.FormattingEnabled = true;
-			this.subjectComboBox.Location = new System.Drawing.Point(68, 10);
-			this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2);
+			this.subjectComboBox.Location = new System.Drawing.Point(91, 12);
+			this.subjectComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.subjectComboBox.Name = "subjectComboBox";
-			this.subjectComboBox.Size = new System.Drawing.Size(92, 21);
+			this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
 			this.subjectComboBox.TabIndex = 7;
 			this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
 			// 
 			// panel1
 			// 
-			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.teacherListLabel);
 			this.panel1.Controls.Add(this.teachersComboBox);
 			this.panel1.Controls.Add(this.saveButton);
@@ -169,39 +164,38 @@
 			this.panel1.Controls.Add(this.groupComboBox);
 			this.panel1.Controls.Add(this.specialtyListLabel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 24);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2);
+			this.panel1.Location = new System.Drawing.Point(0, 28);
+			this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1157, 41);
+			this.panel1.Size = new System.Drawing.Size(1543, 50);
 			this.panel1.TabIndex = 9;
 			// 
 			// teacherListLabel
 			// 
 			this.teacherListLabel.AutoSize = true;
-			this.teacherListLabel.Location = new System.Drawing.Point(176, 12);
-			this.teacherListLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.teacherListLabel.Location = new System.Drawing.Point(235, 15);
 			this.teacherListLabel.Name = "teacherListLabel";
-			this.teacherListLabel.Size = new System.Drawing.Size(86, 13);
+			this.teacherListLabel.Size = new System.Drawing.Size(111, 17);
 			this.teacherListLabel.TabIndex = 11;
 			this.teacherListLabel.Text = "Преподаватель";
 			// 
 			// teachersComboBox
 			// 
 			this.teachersComboBox.FormattingEnabled = true;
-			this.teachersComboBox.Location = new System.Drawing.Point(263, 10);
-			this.teachersComboBox.Margin = new System.Windows.Forms.Padding(2);
+			this.teachersComboBox.Location = new System.Drawing.Point(351, 12);
+			this.teachersComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.teachersComboBox.Name = "teachersComboBox";
-			this.teachersComboBox.Size = new System.Drawing.Size(211, 21);
+			this.teachersComboBox.Size = new System.Drawing.Size(280, 24);
 			this.teachersComboBox.TabIndex = 10;
 			this.teachersComboBox.SelectedIndexChanged += new System.EventHandler(this.teachersComboBox_SelectedIndexChanged);
 			// 
 			// saveButton
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.saveButton.Location = new System.Drawing.Point(1069, 10);
-			this.saveButton.Margin = new System.Windows.Forms.Padding(2);
+			this.saveButton.Location = new System.Drawing.Point(1425, 12);
+			this.saveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.saveButton.Name = "saveButton";
-			this.saveButton.Size = new System.Drawing.Size(79, 26);
+			this.saveButton.Size = new System.Drawing.Size(105, 32);
 			this.saveButton.TabIndex = 9;
 			this.saveButton.Text = "Сохранить";
 			this.saveButton.UseVisualStyleBackColor = true;
@@ -216,10 +210,10 @@
             this.studentName,
             this.gropColumn});
 			this.subjectMarksDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.subjectMarksDataGrid.Location = new System.Drawing.Point(2, 2);
-			this.subjectMarksDataGrid.Margin = new System.Windows.Forms.Padding(2);
+			this.subjectMarksDataGrid.Location = new System.Drawing.Point(3, 2);
+			this.subjectMarksDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.subjectMarksDataGrid.Name = "subjectMarksDataGrid";
-			this.subjectMarksDataGrid.Size = new System.Drawing.Size(1145, 515);
+			this.subjectMarksDataGrid.Size = new System.Drawing.Size(1529, 640);
 			this.subjectMarksDataGrid.TabIndex = 0;
 			this.subjectMarksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectMarksDataGrid_CellEndEdit);
 			// 
@@ -249,8 +243,8 @@
             this.менюToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-			this.menuStrip1.Size = new System.Drawing.Size(1157, 24);
+			this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+			this.menuStrip1.Size = new System.Drawing.Size(1543, 28);
 			this.menuStrip1.TabIndex = 10;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -266,7 +260,7 @@
             this.студентыToolStripMenuItem,
             this.статистикаToolStripMenuItem});
 			this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-			this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+			this.менюToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
 			this.менюToolStripMenuItem.Text = "Меню";
 			// 
 			// кТToolStripMenuItem
@@ -276,27 +270,27 @@
             this.изменитьКТToolStripMenuItem1,
             this.удалитьКТToolStripMenuItem1});
 			this.кТToolStripMenuItem.Name = "кТToolStripMenuItem";
-			this.кТToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.кТToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.кТToolStripMenuItem.Text = "КТ";
 			// 
 			// добавитьКТToolStripMenuItem1
 			// 
 			this.добавитьКТToolStripMenuItem1.Name = "добавитьКТToolStripMenuItem1";
-			this.добавитьКТToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+			this.добавитьКТToolStripMenuItem1.Size = new System.Drawing.Size(178, 26);
 			this.добавитьКТToolStripMenuItem1.Text = "Добавить КТ";
 			this.добавитьКТToolStripMenuItem1.Click += new System.EventHandler(this.добавитьКТToolStripMenuItem_Click);
 			// 
 			// изменитьКТToolStripMenuItem1
 			// 
 			this.изменитьКТToolStripMenuItem1.Name = "изменитьКТToolStripMenuItem1";
-			this.изменитьКТToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+			this.изменитьКТToolStripMenuItem1.Size = new System.Drawing.Size(178, 26);
 			this.изменитьКТToolStripMenuItem1.Text = "Изменить КТ ";
 			this.изменитьКТToolStripMenuItem1.Click += new System.EventHandler(this.изменитьКТToolStripMenuItem_Click);
 			// 
 			// удалитьКТToolStripMenuItem1
 			// 
 			this.удалитьКТToolStripMenuItem1.Name = "удалитьКТToolStripMenuItem1";
-			this.удалитьКТToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+			this.удалитьКТToolStripMenuItem1.Size = new System.Drawing.Size(178, 26);
 			this.удалитьКТToolStripMenuItem1.Text = "Удалить КТ";
 			this.удалитьКТToolStripMenuItem1.Click += new System.EventHandler(this.удалитьКТToolStripMenuItem_Click);
 			// 
@@ -307,27 +301,27 @@
             this.изменитьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
 			this.преподавателиToolStripMenuItem.Name = "преподавателиToolStripMenuItem";
-			this.преподавателиToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.преподавателиToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.преподавателиToolStripMenuItem.Text = "Преподаватели";
 			// 
 			// добавитьToolStripMenuItem
 			// 
 			this.добавитьToolStripMenuItem.Name = "добавитьToolStripMenuItem";
-			this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
 			this.добавитьToolStripMenuItem.Text = "Добавить преподавателя";
 			this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
 			// 
 			// изменитьToolStripMenuItem
 			// 
 			this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-			this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
 			this.изменитьToolStripMenuItem.Text = "Изменить преподавателя";
 			this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
 			// 
 			// удалитьToolStripMenuItem
 			// 
 			this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-			this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+			this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
 			this.удалитьToolStripMenuItem.Text = "Удалить преподавателя";
 			this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
 			// 
@@ -338,27 +332,27 @@
             this.изменитьПредметToolStripMenuItem,
             this.удалитьПредметToolStripMenuItem});
 			this.предметыToolStripMenuItem.Name = "предметыToolStripMenuItem";
-			this.предметыToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.предметыToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.предметыToolStripMenuItem.Text = "Предметы";
 			// 
 			// добавитьПредметToolStripMenuItem
 			// 
 			this.добавитьПредметToolStripMenuItem.Name = "добавитьПредметToolStripMenuItem";
-			this.добавитьПредметToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+			this.добавитьПредметToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
 			this.добавитьПредметToolStripMenuItem.Text = "Добавить предмет";
 			this.добавитьПредметToolStripMenuItem.Click += new System.EventHandler(this.добавитьПредметToolStripMenuItem_Click);
 			// 
 			// изменитьПредметToolStripMenuItem
 			// 
 			this.изменитьПредметToolStripMenuItem.Name = "изменитьПредметToolStripMenuItem";
-			this.изменитьПредметToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+			this.изменитьПредметToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
 			this.изменитьПредметToolStripMenuItem.Text = "Изменить предмет";
 			this.изменитьПредметToolStripMenuItem.Click += new System.EventHandler(this.изменитьПредметToolStripMenuItem_Click);
 			// 
 			// удалитьПредметToolStripMenuItem
 			// 
 			this.удалитьПредметToolStripMenuItem.Name = "удалитьПредметToolStripMenuItem";
-			this.удалитьПредметToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+			this.удалитьПредметToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
 			this.удалитьПредметToolStripMenuItem.Text = "Удалить предмет";
 			this.удалитьПредметToolStripMenuItem.Click += new System.EventHandler(this.удалитьПредметToolStripMenuItem_Click);
 			// 
@@ -369,27 +363,27 @@
             this.изменитьОтделениеToolStripMenuItem,
             this.удалитьОтделениеToolStripMenuItem});
 			this.отделениеToolStripMenuItem.Name = "отделениеToolStripMenuItem";
-			this.отделениеToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.отделениеToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.отделениеToolStripMenuItem.Text = "Отделения";
 			// 
 			// создатьОтделениеToolStripMenuItem
 			// 
 			this.создатьОтделениеToolStripMenuItem.Name = "создатьОтделениеToolStripMenuItem";
-			this.создатьОтделениеToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.создатьОтделениеToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
 			this.создатьОтделениеToolStripMenuItem.Text = "Создать отделение";
 			this.создатьОтделениеToolStripMenuItem.Click += new System.EventHandler(this.создатьОтделениеToolStripMenuItem_Click);
 			// 
 			// изменитьОтделениеToolStripMenuItem
 			// 
 			this.изменитьОтделениеToolStripMenuItem.Name = "изменитьОтделениеToolStripMenuItem";
-			this.изменитьОтделениеToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.изменитьОтделениеToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
 			this.изменитьОтделениеToolStripMenuItem.Text = "Изменить отделение";
 			this.изменитьОтделениеToolStripMenuItem.Click += new System.EventHandler(this.изменитьОтделениеToolStripMenuItem_Click);
 			// 
 			// удалитьОтделениеToolStripMenuItem
 			// 
 			this.удалитьОтделениеToolStripMenuItem.Name = "удалитьОтделениеToolStripMenuItem";
-			this.удалитьОтделениеToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+			this.удалитьОтделениеToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
 			this.удалитьОтделениеToolStripMenuItem.Text = "Удалить отделение";
 			this.удалитьОтделениеToolStripMenuItem.Click += new System.EventHandler(this.удалитьОтделениеToolStripMenuItem_Click);
 			// 
@@ -400,27 +394,27 @@
             this.изменитьСпециальностьToolStripMenuItem,
             this.удалитьСпециальностьToolStripMenuItem});
 			this.спецмальностиToolStripMenuItem.Name = "спецмальностиToolStripMenuItem";
-			this.спецмальностиToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.спецмальностиToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.спецмальностиToolStripMenuItem.Text = "Специальности";
 			// 
 			// добавитьСпециальностьToolStripMenuItem
 			// 
 			this.добавитьСпециальностьToolStripMenuItem.Name = "добавитьСпециальностьToolStripMenuItem";
-			this.добавитьСпециальностьToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+			this.добавитьСпециальностьToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
 			this.добавитьСпециальностьToolStripMenuItem.Text = "Добавить специальность";
 			this.добавитьСпециальностьToolStripMenuItem.Click += new System.EventHandler(this.добавитьСпециальностьToolStripMenuItem_Click);
 			// 
 			// изменитьСпециальностьToolStripMenuItem
 			// 
 			this.изменитьСпециальностьToolStripMenuItem.Name = "изменитьСпециальностьToolStripMenuItem";
-			this.изменитьСпециальностьToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+			this.изменитьСпециальностьToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
 			this.изменитьСпециальностьToolStripMenuItem.Text = "Изменить специальность";
 			this.изменитьСпециальностьToolStripMenuItem.Click += new System.EventHandler(this.изменитьСпециальностьToolStripMenuItem_Click);
 			// 
 			// удалитьСпециальностьToolStripMenuItem
 			// 
 			this.удалитьСпециальностьToolStripMenuItem.Name = "удалитьСпециальностьToolStripMenuItem";
-			this.удалитьСпециальностьToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+			this.удалитьСпециальностьToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
 			this.удалитьСпециальностьToolStripMenuItem.Text = "Удалить специальность";
 			this.удалитьСпециальностьToolStripMenuItem.Click += new System.EventHandler(this.удалитьСпециальностьToolStripMenuItem_Click);
 			// 
@@ -431,27 +425,27 @@
             this.изменитьГруппуToolStripMenuItem,
             this.удалитьГруппуToolStripMenuItem});
 			this.группыToolStripMenuItem.Name = "группыToolStripMenuItem";
-			this.группыToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.группыToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.группыToolStripMenuItem.Text = "Группы";
 			// 
 			// добавитьГруппуToolStripMenuItem
 			// 
 			this.добавитьГруппуToolStripMenuItem.Name = "добавитьГруппуToolStripMenuItem";
-			this.добавитьГруппуToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+			this.добавитьГруппуToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
 			this.добавитьГруппуToolStripMenuItem.Text = "Добавить группу";
 			this.добавитьГруппуToolStripMenuItem.Click += new System.EventHandler(this.добавитьГруппуToolStripMenuItem_Click);
 			// 
 			// изменитьГруппуToolStripMenuItem
 			// 
 			this.изменитьГруппуToolStripMenuItem.Name = "изменитьГруппуToolStripMenuItem";
-			this.изменитьГруппуToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+			this.изменитьГруппуToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
 			this.изменитьГруппуToolStripMenuItem.Text = "Изменить группу";
 			this.изменитьГруппуToolStripMenuItem.Click += new System.EventHandler(this.изменитьГруппуToolStripMenuItem_Click);
 			// 
 			// удалитьГруппуToolStripMenuItem
 			// 
 			this.удалитьГруппуToolStripMenuItem.Name = "удалитьГруппуToolStripMenuItem";
-			this.удалитьГруппуToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+			this.удалитьГруппуToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
 			this.удалитьГруппуToolStripMenuItem.Text = "Удалить группу";
 			this.удалитьГруппуToolStripMenuItem.Click += new System.EventHandler(this.удалитьГруппуToolStripMenuItem_Click);
 			// 
@@ -462,34 +456,34 @@
             this.изменитьСтудентаToolStripMenuItem,
             this.удалитьСтудентаToolStripMenuItem});
 			this.студентыToolStripMenuItem.Name = "студентыToolStripMenuItem";
-			this.студентыToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.студентыToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.студентыToolStripMenuItem.Text = "Студенты";
 			// 
 			// добавитьСтудентаToolStripMenuItem
 			// 
 			this.добавитьСтудентаToolStripMenuItem.Name = "добавитьСтудентаToolStripMenuItem";
-			this.добавитьСтудентаToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.добавитьСтудентаToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
 			this.добавитьСтудентаToolStripMenuItem.Text = "Добавить студента";
 			this.добавитьСтудентаToolStripMenuItem.Click += new System.EventHandler(this.добавитьСтудентаToolStripMenuItem_Click);
 			// 
 			// изменитьСтудентаToolStripMenuItem
 			// 
 			this.изменитьСтудентаToolStripMenuItem.Name = "изменитьСтудентаToolStripMenuItem";
-			this.изменитьСтудентаToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.изменитьСтудентаToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
 			this.изменитьСтудентаToolStripMenuItem.Text = "Изменить студента";
 			this.изменитьСтудентаToolStripMenuItem.Click += new System.EventHandler(this.изменитьСтудентаToolStripMenuItem_Click);
 			// 
 			// удалитьСтудентаToolStripMenuItem
 			// 
 			this.удалитьСтудентаToolStripMenuItem.Name = "удалитьСтудентаToolStripMenuItem";
-			this.удалитьСтудентаToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+			this.удалитьСтудентаToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
 			this.удалитьСтудентаToolStripMenuItem.Text = "Удалить студента";
 			this.удалитьСтудентаToolStripMenuItem.Click += new System.EventHandler(this.удалитьСтудентаToolStripMenuItem_Click);
 			// 
 			// статистикаToolStripMenuItem
 			// 
 			this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
-			this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+			this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
 			this.статистикаToolStripMenuItem.Text = "Статистика";
 			this.статистикаToolStripMenuItem.Click += new System.EventHandler(this.статистикаToolStripMenuItem_Click);
 			// 
@@ -500,20 +494,20 @@
 			this.tabControl.Controls.Add(this.labWorksTabPage);
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Location = new System.Drawing.Point(0, 0);
-			this.tabControl.Margin = new System.Windows.Forms.Padding(2);
+			this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(1157, 545);
+			this.tabControl.Size = new System.Drawing.Size(1543, 673);
 			this.tabControl.TabIndex = 11;
 			// 
 			// marksTabPage
 			// 
 			this.marksTabPage.Controls.Add(this.subjectMarksDataGrid);
-			this.marksTabPage.Location = new System.Drawing.Point(4, 22);
-			this.marksTabPage.Margin = new System.Windows.Forms.Padding(2);
+			this.marksTabPage.Location = new System.Drawing.Point(4, 25);
+			this.marksTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.marksTabPage.Name = "marksTabPage";
-			this.marksTabPage.Padding = new System.Windows.Forms.Padding(2);
-			this.marksTabPage.Size = new System.Drawing.Size(1149, 519);
+			this.marksTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.marksTabPage.Size = new System.Drawing.Size(1535, 644);
 			this.marksTabPage.TabIndex = 0;
 			this.marksTabPage.Text = "Оценки";
 			this.marksTabPage.UseVisualStyleBackColor = true;
@@ -521,11 +515,11 @@
 			// absencesTabPage
 			// 
 			this.absencesTabPage.Controls.Add(this.absencesDataGrid);
-			this.absencesTabPage.Location = new System.Drawing.Point(4, 22);
-			this.absencesTabPage.Margin = new System.Windows.Forms.Padding(2);
+			this.absencesTabPage.Location = new System.Drawing.Point(4, 25);
+			this.absencesTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.absencesTabPage.Name = "absencesTabPage";
-			this.absencesTabPage.Padding = new System.Windows.Forms.Padding(2);
-			this.absencesTabPage.Size = new System.Drawing.Size(1149, 519);
+			this.absencesTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.absencesTabPage.Size = new System.Drawing.Size(1535, 642);
 			this.absencesTabPage.TabIndex = 1;
 			this.absencesTabPage.Text = "Пропуски";
 			this.absencesTabPage.UseVisualStyleBackColor = true;
@@ -539,10 +533,10 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
 			this.absencesDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.absencesDataGrid.Location = new System.Drawing.Point(2, 2);
-			this.absencesDataGrid.Margin = new System.Windows.Forms.Padding(2);
+			this.absencesDataGrid.Location = new System.Drawing.Point(3, 2);
+			this.absencesDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.absencesDataGrid.Name = "absencesDataGrid";
-			this.absencesDataGrid.Size = new System.Drawing.Size(1145, 515);
+			this.absencesDataGrid.Size = new System.Drawing.Size(1529, 638);
 			this.absencesDataGrid.TabIndex = 1;
 			this.absencesDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.absencesDataGrid_CellEndEdit);
 			// 
@@ -567,11 +561,11 @@
 			// labWorksTabPage
 			// 
 			this.labWorksTabPage.Controls.Add(this.labWorksDataGrid);
-			this.labWorksTabPage.Location = new System.Drawing.Point(4, 22);
-			this.labWorksTabPage.Margin = new System.Windows.Forms.Padding(2);
+			this.labWorksTabPage.Location = new System.Drawing.Point(4, 25);
+			this.labWorksTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.labWorksTabPage.Name = "labWorksTabPage";
-			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(2);
-			this.labWorksTabPage.Size = new System.Drawing.Size(1149, 519);
+			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.labWorksTabPage.Size = new System.Drawing.Size(1535, 642);
 			this.labWorksTabPage.TabIndex = 2;
 			this.labWorksTabPage.Text = "ЛР";
 			this.labWorksTabPage.UseVisualStyleBackColor = true;
@@ -585,10 +579,10 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
 			this.labWorksDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.labWorksDataGrid.Location = new System.Drawing.Point(2, 2);
-			this.labWorksDataGrid.Margin = new System.Windows.Forms.Padding(2);
+			this.labWorksDataGrid.Location = new System.Drawing.Point(3, 2);
+			this.labWorksDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.labWorksDataGrid.Name = "labWorksDataGrid";
-			this.labWorksDataGrid.Size = new System.Drawing.Size(1145, 515);
+			this.labWorksDataGrid.Size = new System.Drawing.Size(1529, 638);
 			this.labWorksDataGrid.TabIndex = 1;
 			this.labWorksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.labWorksDataGrid_CellEndEdit);
 			// 
@@ -614,31 +608,21 @@
 			// 
 			this.panel2.Controls.Add(this.tabControl);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(0, 65);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2);
+			this.panel2.Location = new System.Drawing.Point(0, 78);
+			this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(1157, 545);
+			this.panel2.Size = new System.Drawing.Size(1543, 673);
 			this.panel2.TabIndex = 12;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(979, 12);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 12;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// SubMarks
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1157, 610);
+			this.ClientSize = new System.Drawing.Size(1543, 751);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.menuStrip1);
-			this.Margin = new System.Windows.Forms.Padding(2);
+			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "SubMarks";
 			this.Text = "SubMarks";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -715,6 +699,5 @@
 		private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
 		private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
-		private System.Windows.Forms.Button button1;
 	}
 }
