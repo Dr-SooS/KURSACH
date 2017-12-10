@@ -23,7 +23,12 @@ namespace KURSACH
         public TeacherUpdate(CollegeContext db)
         {
             InitializeComponent();
-            this.db = db;
+
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+			textBox2.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+			textBox3.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+
+			this.db = db;
 
             comboBox1.Items.Add("Выберите преподавателя");
             foreach (var teacher in db.Teachers)
@@ -50,11 +55,16 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            selectedTeacher.FirstName = textBox1.Text;
-            selectedTeacher.MiddleName = textBox2.Text;
-            selectedTeacher.LastName = textBox3.Text;
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				selectedTeacher.FirstName = textBox1.Text;
+				selectedTeacher.MiddleName = textBox2.Text;
+				selectedTeacher.LastName = textBox3.Text;
+				db.SaveChanges();
+				Close();
+			}
         }
     }
 }

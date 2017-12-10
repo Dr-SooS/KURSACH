@@ -23,7 +23,7 @@ namespace KURSACH
 
 		public override string ToString()
 		{
-			return $"{LastName} {FirstName}";
+			return LastName + " " + FirstName;
 		}
     }
 }

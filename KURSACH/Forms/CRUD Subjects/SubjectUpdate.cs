@@ -23,7 +23,10 @@ namespace KURSACH
         public SubjectUpdate(CollegeContext db)
         {
             InitializeComponent();
-            this.db = db;
+
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+
+			this.db = db;
 
             comboBox1.Items.Add("Выберите предмет");
             foreach (var sub in db.Subjects)
@@ -48,9 +51,14 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            selectedSubject.Name = textBox1.Text;
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				selectedSubject.Name = textBox1.Text;
+				db.SaveChanges();
+				Close();
+			}
         }
     }
 }

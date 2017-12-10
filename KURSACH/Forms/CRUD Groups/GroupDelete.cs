@@ -26,7 +26,7 @@ namespace KURSACH
             InitializeComponent();
             this.db = db;
 
-            comboBox1.Items.Add("Выберите специальность");
+            comboBox1.Items.Add("Выберите группу");
             foreach (var sub in db.Groups)
                 comboBox1.Items.Add(sub.Number.ToString());
             comboBox1.SelectedIndex = 0;

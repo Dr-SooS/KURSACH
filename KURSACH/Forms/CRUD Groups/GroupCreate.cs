@@ -23,7 +23,8 @@ namespace KURSACH
         public GroupCreate(CollegeContext db)
         {
             InitializeComponent();
-            this.db = db;
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateDigit);
+			this.db = db;
 
             comboBox1.Items.Add("Выберите специальность");
             foreach (var sp in db.Specialties)
@@ -35,9 +36,14 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            db.Groups.Add(new Group { Number = Convert.ToInt32(textBox1.Text), Specialty = selectedSpecialty });
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				db.Groups.Add(new Group { Number = Convert.ToInt32(textBox1.Text), Specialty = selectedSpecialty });
+				db.SaveChanges();
+				Close();
+			}
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

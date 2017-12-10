@@ -24,7 +24,10 @@ namespace KURSACH
         public GroupUpdate(CollegeContext db)
         {
             InitializeComponent();
-            this.db = db;
+
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateDigit);
+
+			this.db = db;
 
             comboBox1.Items.Add("Выберите группу");
             foreach (var spec in db.Groups)
@@ -61,10 +64,15 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            selectedGroup.Number = Convert.ToInt32(textBox1.Text);
-            selectedGroup.Specialty = selectedSpecialty;
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				selectedGroup.Number = Convert.ToInt32(textBox1.Text);
+				selectedGroup.Specialty = selectedSpecialty;
+				db.SaveChanges();
+				Close();
+			}
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)

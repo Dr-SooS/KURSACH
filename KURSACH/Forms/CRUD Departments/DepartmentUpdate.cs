@@ -25,7 +25,9 @@ namespace KURSACH
             InitializeComponent();
             this.db = db;
 
-            comboBox1.Items.Add("Выберите отделение");
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+
+			comboBox1.Items.Add("Выберите отделение");
             foreach (var sub in db.Departments)
                 comboBox1.Items.Add(sub.Name);
             comboBox1.SelectedIndex = 0;
@@ -48,9 +50,14 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            selectedDepartment.Name = textBox1.Text;
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				selectedDepartment.Name = textBox1.Text;
+				db.SaveChanges();
+				Close();
+			}
         }
     }
 }

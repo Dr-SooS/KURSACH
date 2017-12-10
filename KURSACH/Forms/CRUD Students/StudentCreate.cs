@@ -22,8 +22,14 @@ namespace KURSACH
 
         public StudentCreate(CollegeContext db)
         {
+
             InitializeComponent();
-            this.db = db;
+
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+			textBox2.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+			textBox3.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+
+			this.db = db;
 
             comboBox1.Items.Add("Выберите группу");
             foreach (var g in db.Groups)
@@ -35,9 +41,14 @@ namespace KURSACH
 
         private void button1_Click(object sender, EventArgs e)
         {
-            db.Students.Add(new Student { FirstName = textBox1.Text, MiddleName = textBox2.Text, LastName = textBox3.Text, Enterance = dateTimePicker1.Value.Date, Group = selectedGroup});
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				db.Students.Add(new Student { FirstName = textBox1.Text, MiddleName = textBox2.Text, LastName = textBox3.Text, Enterance = dateTimePicker1.Value.Date, Group = selectedGroup });
+				db.SaveChanges();
+				Close();
+			}
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,5 +62,5 @@ namespace KURSACH
             else
                 button1.Enabled = false;
         }
-    }
+	}
 }

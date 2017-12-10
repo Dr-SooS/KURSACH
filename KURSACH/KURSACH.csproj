@@ -188,6 +188,7 @@
       <DependentUpon>GroupStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\LabWork.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Migrations\201704271719376_Initial.cs" />
     <Compile Include="Migrations\201704271719376_Initial.Designer.cs">
       <DependentUpon>201704271719376_Initial.cs</DependentUpon>

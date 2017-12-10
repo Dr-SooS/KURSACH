@@ -22,14 +22,22 @@ namespace KURSACH
         public DepartmentCreate(CollegeContext db)
         {
             InitializeComponent();
-            this.db = db;
+
+			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
+
+			this.db = db;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            db.Departments.Add(new Department { Name = textBox1.Text });
-            db.SaveChanges();
-            Close();
+			if (textBox1.Text == "")
+				MessageBox.Show("Заполните все поля");
+			else
+			{
+				db.Departments.Add(new Department { Name = textBox1.Text });
+				db.SaveChanges();
+				Close();
+			}
         }
     }
 }
