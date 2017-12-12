@@ -22,7 +22,8 @@ namespace KURSACH
         public SubMarks()
         {
             InitializeComponent();
-            db = new CollegeContext();
+
+			db = new CollegeContext();
 
             subjectComboBox.Items.Add("Выберите предмет");
             foreach (var sub in db.Subjects)
@@ -55,12 +56,48 @@ namespace KURSACH
 							subjectMarksDataGrid[i, j].Value = "-";
 						else
 							subjectMarksDataGrid[i, j].Value = mark.Value;
+					else
+					{
+						db.Marks.Add(new Mark
+						{
+							ControlPoint = db.ControlPoints.FirstOrDefault(c => c.Date == date),
+							Student = (Student)subjectMarksDataGrid[0, j].Value,
+							Subject = selectedSubject,
+							Teacher = selectedTeacher,
+							NoValue = true
+						});
+						absencesDataGrid[i, j].Value = "-";
+					}
 
 					if (abs != null)
 						absencesDataGrid[i, j].Value = abs.Count;
+					else
+					{
+						db.Absences.Add(new Absence
+						{
+							ControlPoint = db.ControlPoints.FirstOrDefault(c => c.Date == date),
+							Student = (Student)subjectMarksDataGrid[0, j].Value,
+							Subject = selectedSubject,
+							Teacher = selectedTeacher,
+							Count = 0
+						});
+						absencesDataGrid[i, j].Value = 0; 
+					}
 
 					if (lab != null)
 						labWorksDataGrid[i, j].Value = lab.NotPassed;
+					else
+					{
+						db.LabWorks.Add(new LabWork
+						{
+							ControlPoint = db.ControlPoints.FirstOrDefault(c => c.Date == date),
+							Student = (Student)subjectMarksDataGrid[0, j].Value,
+							Subject = selectedSubject,
+							Teacher = selectedTeacher,
+							NotPassed = 0
+						});
+						labWorksDataGrid[i, j].Value = 0;
+					}
 				}
 		}
 
@@ -211,6 +248,8 @@ namespace KURSACH
         {
             var cell = subjectMarksDataGrid.CurrentCell;
             var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText, "dd.MM yyyy", null);
+			if (cell.Value == null)
+				cell.Value = "-";
 			BL.EditMark(db, db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, cell.RowIndex].Value, selectedSubject, selectedTeacher, cell.Value.ToString());
         }
 
@@ -218,6 +257,8 @@ namespace KURSACH
 	    {
 		    var cell = absencesDataGrid.CurrentCell;
 			var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText, "dd.MM yyyy", null);
+			if (cell.Value == null)
+				cell.Value = "0";
 			BL.EditAbsence(db, db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, cell.RowIndex].Value, selectedSubject, selectedTeacher, cell.Value.ToString());
 		}
 
@@ -225,6 +266,8 @@ namespace KURSACH
 	    {
 			var cell = labWorksDataGrid.CurrentCell;
 			var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[cell.ColumnIndex].HeaderText, "dd.MM yyyy", null);
+			if (cell.Value == null)
+				cell.Value = "0";
 			BL.EditLabWork(db, db.ControlPoints.FirstOrDefault(c => c.Date == date), (Student)subjectMarksDataGrid[0, cell.RowIndex].Value, selectedSubject, selectedTeacher, cell.Value.ToString());
 		}
 
@@ -439,9 +482,26 @@ namespace KURSACH
 			new GroupStatistics(db).Show();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void subjectMarksDataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
 		{
-			db.SeedDb();
+			e.Control.KeyPress += new KeyPressEventHandler(Helper.ValidateMark);
+		}
+
+		private void absencesDataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+		{
+			e.Control.KeyPress += new KeyPressEventHandler(Helper.ValidateDigit);
+			e.Control.KeyPress += new KeyPressEventHandler(Helper.ValidateInt);
+		}
+
+		private void labWorksDataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+		{
+			e.Control.KeyPress += new KeyPressEventHandler(Helper.ValidateDigit);
+			e.Control.KeyPress += new KeyPressEventHandler(Helper.ValidateInt);
+		}
+
+		private void seedToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			db.SeedDb(1);
 		}
 	}
 }

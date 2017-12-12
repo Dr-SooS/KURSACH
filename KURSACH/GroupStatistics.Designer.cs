@@ -63,54 +63,57 @@
 			this.filtersPanel.Controls.Add(this.specialtyComboBox);
 			this.filtersPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.filtersPanel.Location = new System.Drawing.Point(0, 0);
-			this.filtersPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.filtersPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.filtersPanel.Name = "filtersPanel";
-			this.filtersPanel.Size = new System.Drawing.Size(1062, 46);
+			this.filtersPanel.Size = new System.Drawing.Size(1416, 57);
 			this.filtersPanel.TabIndex = 1;
 			// 
 			// cpComboBox
 			// 
 			this.cpComboBox.FormattingEnabled = true;
-			this.cpComboBox.Location = new System.Drawing.Point(348, 13);
+			this.cpComboBox.Location = new System.Drawing.Point(464, 16);
+			this.cpComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.cpComboBox.Name = "cpComboBox";
-			this.cpComboBox.Size = new System.Drawing.Size(151, 21);
+			this.cpComboBox.Size = new System.Drawing.Size(200, 24);
 			this.cpComboBox.TabIndex = 2;
 			this.cpComboBox.SelectedIndexChanged += new System.EventHandler(this.cpComboBox_SelectedIndexChanged);
 			// 
 			// groupComboBox
 			// 
 			this.groupComboBox.FormattingEnabled = true;
-			this.groupComboBox.Location = new System.Drawing.Point(181, 13);
+			this.groupComboBox.Location = new System.Drawing.Point(241, 16);
+			this.groupComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.groupComboBox.Name = "groupComboBox";
-			this.groupComboBox.Size = new System.Drawing.Size(151, 21);
+			this.groupComboBox.Size = new System.Drawing.Size(200, 24);
 			this.groupComboBox.TabIndex = 1;
 			this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
 			// 
 			// specialtyComboBox
 			// 
 			this.specialtyComboBox.FormattingEnabled = true;
-			this.specialtyComboBox.Location = new System.Drawing.Point(13, 13);
+			this.specialtyComboBox.Location = new System.Drawing.Point(17, 16);
+			this.specialtyComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.specialtyComboBox.Name = "specialtyComboBox";
-			this.specialtyComboBox.Size = new System.Drawing.Size(151, 21);
+			this.specialtyComboBox.Size = new System.Drawing.Size(200, 24);
 			this.specialtyComboBox.TabIndex = 0;
 			this.specialtyComboBox.SelectedIndexChanged += new System.EventHandler(this.specialtyCombobox_SelectedIndexChanged);
 			// 
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.studentListView);
-			this.panel1.Location = new System.Drawing.Point(0, 203);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2);
+			this.panel1.Location = new System.Drawing.Point(0, 250);
+			this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(150, 589);
+			this.panel1.Size = new System.Drawing.Size(200, 725);
 			this.panel1.TabIndex = 2;
 			// 
 			// studentListView
 			// 
 			this.studentListView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.studentListView.Location = new System.Drawing.Point(0, 0);
-			this.studentListView.Margin = new System.Windows.Forms.Padding(2);
+			this.studentListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.studentListView.Name = "studentListView";
-			this.studentListView.Size = new System.Drawing.Size(150, 589);
+			this.studentListView.Size = new System.Drawing.Size(200, 725);
 			this.studentListView.TabIndex = 0;
 			this.studentListView.UseCompatibleStateImageBehavior = false;
 			this.studentListView.View = System.Windows.Forms.View.List;
@@ -127,89 +130,97 @@
 			this.groupInfoPanel.Controls.Add(this.label2);
 			this.groupInfoPanel.Controls.Add(this.label1);
 			this.groupInfoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.groupInfoPanel.Location = new System.Drawing.Point(0, 46);
-			this.groupInfoPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.groupInfoPanel.Location = new System.Drawing.Point(0, 57);
+			this.groupInfoPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupInfoPanel.Name = "groupInfoPanel";
-			this.groupInfoPanel.Size = new System.Drawing.Size(1062, 157);
+			this.groupInfoPanel.Size = new System.Drawing.Size(1416, 193);
 			this.groupInfoPanel.TabIndex = 3;
 			// 
 			// groupProblemsRichTextBox
 			// 
-			this.groupProblemsRichTextBox.Location = new System.Drawing.Point(154, 3);
+			this.groupProblemsRichTextBox.Location = new System.Drawing.Point(379, 4);
+			this.groupProblemsRichTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.groupProblemsRichTextBox.Name = "groupProblemsRichTextBox";
 			this.groupProblemsRichTextBox.ReadOnly = true;
-			this.groupProblemsRichTextBox.Size = new System.Drawing.Size(294, 147);
+			this.groupProblemsRichTextBox.Size = new System.Drawing.Size(391, 180);
 			this.groupProblemsRichTextBox.TabIndex = 6;
 			this.groupProblemsRichTextBox.Text = "";
 			// 
 			// notAllLabsLabel
 			// 
 			this.notAllLabsLabel.AutoSize = true;
-			this.notAllLabsLabel.Location = new System.Drawing.Point(102, 90);
+			this.notAllLabsLabel.Location = new System.Drawing.Point(257, 111);
+			this.notAllLabsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.notAllLabsLabel.Name = "notAllLabsLabel";
-			this.notAllLabsLabel.Size = new System.Drawing.Size(0, 13);
+			this.notAllLabsLabel.Size = new System.Drawing.Size(0, 17);
 			this.notAllLabsLabel.TabIndex = 5;
 			// 
 			// manyAbsLabel
 			// 
 			this.manyAbsLabel.AutoSize = true;
-			this.manyAbsLabel.Location = new System.Drawing.Point(102, 58);
+			this.manyAbsLabel.Location = new System.Drawing.Point(249, 71);
+			this.manyAbsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.manyAbsLabel.Name = "manyAbsLabel";
-			this.manyAbsLabel.Size = new System.Drawing.Size(0, 13);
+			this.manyAbsLabel.Size = new System.Drawing.Size(0, 17);
 			this.manyAbsLabel.TabIndex = 4;
 			// 
 			// lowMarksLabel
 			// 
 			this.lowMarksLabel.AutoSize = true;
-			this.lowMarksLabel.Location = new System.Drawing.Point(102, 25);
+			this.lowMarksLabel.Location = new System.Drawing.Point(136, 31);
+			this.lowMarksLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lowMarksLabel.Name = "lowMarksLabel";
-			this.lowMarksLabel.Size = new System.Drawing.Size(0, 13);
+			this.lowMarksLabel.Size = new System.Drawing.Size(0, 17);
 			this.lowMarksLabel.TabIndex = 3;
 			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(12, 90);
+			this.label3.Location = new System.Drawing.Point(16, 111);
+			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(84, 13);
+			this.label3.Size = new System.Drawing.Size(233, 17);
 			this.label3.TabIndex = 2;
-			this.label3.Text = "Не сдана лаба:";
+			this.label3.Text = "Не сданы лабораторные работы: ";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(12, 58);
+			this.label2.Location = new System.Drawing.Point(16, 71);
+			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(58, 13);
+			this.label2.Size = new System.Drawing.Size(200, 17);
 			this.label2.TabIndex = 1;
-			this.label2.Text = "Больше 8:";
+			this.label2.Text = "Пропущено больше 8 часов: ";
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 25);
+			this.label1.Location = new System.Drawing.Point(16, 31);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(47, 13);
+			this.label1.Size = new System.Drawing.Size(115, 17);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Ниже 4:";
+			this.label1.Text = "Оценка ниже 4: ";
 			// 
 			// studentInfoPanel
 			// 
 			this.studentInfoPanel.Controls.Add(this.studentProblemsRichRextBox);
 			this.studentInfoPanel.Controls.Add(this.studentMarksDataGridView);
 			this.studentInfoPanel.Dock = System.Windows.Forms.DockStyle.Right;
-			this.studentInfoPanel.Location = new System.Drawing.Point(154, 203);
-			this.studentInfoPanel.Margin = new System.Windows.Forms.Padding(2);
+			this.studentInfoPanel.Location = new System.Drawing.Point(205, 250);
+			this.studentInfoPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.studentInfoPanel.Name = "studentInfoPanel";
-			this.studentInfoPanel.Size = new System.Drawing.Size(908, 589);
+			this.studentInfoPanel.Size = new System.Drawing.Size(1211, 725);
 			this.studentInfoPanel.TabIndex = 4;
 			// 
 			// studentProblemsRichRextBox
 			// 
-			this.studentProblemsRichRextBox.Location = new System.Drawing.Point(0, 406);
+			this.studentProblemsRichRextBox.Location = new System.Drawing.Point(0, 500);
+			this.studentProblemsRichRextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.studentProblemsRichRextBox.Name = "studentProblemsRichRextBox";
 			this.studentProblemsRichRextBox.ReadOnly = true;
-			this.studentProblemsRichRextBox.Size = new System.Drawing.Size(322, 171);
+			this.studentProblemsRichRextBox.Size = new System.Drawing.Size(428, 210);
 			this.studentProblemsRichRextBox.TabIndex = 7;
 			this.studentProblemsRichRextBox.Text = "";
 			// 
@@ -224,9 +235,10 @@
             this.absCol,
             this.labCol});
 			this.studentMarksDataGridView.Location = new System.Drawing.Point(0, 0);
+			this.studentMarksDataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.studentMarksDataGridView.Name = "studentMarksDataGridView";
 			this.studentMarksDataGridView.ReadOnly = true;
-			this.studentMarksDataGridView.Size = new System.Drawing.Size(322, 400);
+			this.studentMarksDataGridView.Size = new System.Drawing.Size(429, 492);
 			this.studentMarksDataGridView.TabIndex = 0;
 			// 
 			// subjectName
@@ -258,14 +270,14 @@
 			// 
 			// GroupStatistics
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1062, 792);
+			this.ClientSize = new System.Drawing.Size(1416, 975);
 			this.Controls.Add(this.studentInfoPanel);
 			this.Controls.Add(this.groupInfoPanel);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.filtersPanel);
-			this.Margin = new System.Windows.Forms.Padding(2);
+			this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.Name = "GroupStatistics";
 			this.Text = "GroupStatistics";
 			this.filtersPanel.ResumeLayout(false);

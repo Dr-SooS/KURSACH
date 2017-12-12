@@ -83,6 +83,7 @@
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.seedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -111,7 +112,7 @@
 			this.specialtyComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.specialtyComboBox.Name = "specialtyComboBox";
 			this.specialtyComboBox.Size = new System.Drawing.Size(291, 24);
-			this.specialtyComboBox.TabIndex = 2;
+			this.specialtyComboBox.TabIndex = 3;
 			this.specialtyComboBox.SelectedIndexChanged += new System.EventHandler(this.specialtyComboBox_SelectedIndexChanged);
 			// 
 			// groupListLabel
@@ -149,7 +150,7 @@
 			this.subjectComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.subjectComboBox.Name = "subjectComboBox";
 			this.subjectComboBox.Size = new System.Drawing.Size(121, 24);
-			this.subjectComboBox.TabIndex = 7;
+			this.subjectComboBox.TabIndex = 1;
 			this.subjectComboBox.SelectedIndexChanged += new System.EventHandler(this.subjectComboBox_SelectedIndexChanged);
 			// 
 			// panel1
@@ -186,7 +187,7 @@
 			this.teachersComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.teachersComboBox.Name = "teachersComboBox";
 			this.teachersComboBox.Size = new System.Drawing.Size(280, 24);
-			this.teachersComboBox.TabIndex = 10;
+			this.teachersComboBox.TabIndex = 2;
 			this.teachersComboBox.SelectedIndexChanged += new System.EventHandler(this.teachersComboBox_SelectedIndexChanged);
 			// 
 			// saveButton
@@ -196,7 +197,7 @@
 			this.saveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(105, 32);
-			this.saveButton.TabIndex = 9;
+			this.saveButton.TabIndex = 6;
 			this.saveButton.Text = "Сохранить";
 			this.saveButton.UseVisualStyleBackColor = true;
 			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -214,8 +215,9 @@
 			this.subjectMarksDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.subjectMarksDataGrid.Name = "subjectMarksDataGrid";
 			this.subjectMarksDataGrid.Size = new System.Drawing.Size(1529, 640);
-			this.subjectMarksDataGrid.TabIndex = 0;
+			this.subjectMarksDataGrid.TabIndex = 11;
 			this.subjectMarksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.subjectMarksDataGrid_CellEndEdit);
+			this.subjectMarksDataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.subjectMarksDataGrid_EditingControlShowing);
 			// 
 			// studentName
 			// 
@@ -240,7 +242,8 @@
 			// 
 			this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.менюToolStripMenuItem});
+            this.менюToolStripMenuItem,
+            this.seedToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -498,7 +501,7 @@
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(1543, 673);
-			this.tabControl.TabIndex = 11;
+			this.tabControl.TabIndex = 5;
 			// 
 			// marksTabPage
 			// 
@@ -519,7 +522,7 @@
 			this.absencesTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.absencesTabPage.Name = "absencesTabPage";
 			this.absencesTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.absencesTabPage.Size = new System.Drawing.Size(1535, 642);
+			this.absencesTabPage.Size = new System.Drawing.Size(1535, 644);
 			this.absencesTabPage.TabIndex = 1;
 			this.absencesTabPage.Text = "Пропуски";
 			this.absencesTabPage.UseVisualStyleBackColor = true;
@@ -536,9 +539,10 @@
 			this.absencesDataGrid.Location = new System.Drawing.Point(3, 2);
 			this.absencesDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.absencesDataGrid.Name = "absencesDataGrid";
-			this.absencesDataGrid.Size = new System.Drawing.Size(1529, 638);
-			this.absencesDataGrid.TabIndex = 1;
+			this.absencesDataGrid.Size = new System.Drawing.Size(1529, 640);
+			this.absencesDataGrid.TabIndex = 22;
 			this.absencesDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.absencesDataGrid_CellEndEdit);
+			this.absencesDataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.absencesDataGrid_EditingControlShowing);
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -565,7 +569,7 @@
 			this.labWorksTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.labWorksTabPage.Name = "labWorksTabPage";
 			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.labWorksTabPage.Size = new System.Drawing.Size(1535, 642);
+			this.labWorksTabPage.Size = new System.Drawing.Size(1535, 644);
 			this.labWorksTabPage.TabIndex = 2;
 			this.labWorksTabPage.Text = "ЛР";
 			this.labWorksTabPage.UseVisualStyleBackColor = true;
@@ -582,9 +586,10 @@
 			this.labWorksDataGrid.Location = new System.Drawing.Point(3, 2);
 			this.labWorksDataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.labWorksDataGrid.Name = "labWorksDataGrid";
-			this.labWorksDataGrid.Size = new System.Drawing.Size(1529, 638);
-			this.labWorksDataGrid.TabIndex = 1;
+			this.labWorksDataGrid.Size = new System.Drawing.Size(1529, 640);
+			this.labWorksDataGrid.TabIndex = 33;
 			this.labWorksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.labWorksDataGrid_CellEndEdit);
+			this.labWorksDataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.labWorksDataGrid_EditingControlShowing);
 			// 
 			// dataGridViewTextBoxColumn3
 			// 
@@ -613,6 +618,13 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1543, 673);
 			this.panel2.TabIndex = 12;
+			// 
+			// seedToolStripMenuItem
+			// 
+			this.seedToolStripMenuItem.Name = "seedToolStripMenuItem";
+			this.seedToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
+			this.seedToolStripMenuItem.Text = "seed";
+			this.seedToolStripMenuItem.Click += new System.EventHandler(this.seedToolStripMenuItem_Click);
 			// 
 			// SubMarks
 			// 
@@ -699,5 +711,6 @@
 		private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
 		private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
+		private System.Windows.Forms.ToolStripMenuItem seedToolStripMenuItem;
 	}
 }

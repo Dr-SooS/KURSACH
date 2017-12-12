@@ -28,66 +28,42 @@ namespace KURSACH
 		public static void EditMark(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
 		{
 			var mark = subject.Marks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
-			if (newValue == null)
-			{
-				if (mark != null)
-					db.Marks.Remove(mark);
-			}
-			else
-			{
-				if (mark != null)
-					if (newValue == "-")
-						mark.NoValue = true;
-					else
-					{
-						mark.NoValue = false;
-						mark.Value = int.Parse(newValue);
-					}
+			if (mark != null)
+				if (newValue == "-")
+					mark.NoValue = true;
 				else
 				{
-					if (newValue == "-")
-						db.Marks.Add(new Mark { NoValue = true, Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher});
-					else
-						db.Marks.Add(new Mark { Value = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher});
+					mark.NoValue = false;
+					mark.Value = int.Parse(newValue);
 				}
+			else
+			{
+				if (newValue == "-")
+					db.Marks.Add(new Mark { NoValue = true, Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher});
+				else
+					db.Marks.Add(new Mark { Value = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher});
 			}
 		}
 
 		public static void EditAbsence(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
 		{
 			var absence = subject.Absences.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
-			if (newValue == null)
-			{
-				if (absence != null)
-					db.Absences.Remove(absence);
-			}
+			if (absence != null)
+				absence.Count = int.Parse(newValue);
 			else
 			{
-				if (absence != null)
-					absence.Count = int.Parse(newValue);
-				else
-				{
-					db.Absences.Add(new Absence { Count = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher });
-				}
+				db.Absences.Add(new Absence { Count = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher });
 			}
 		}
 
 		public static void EditLabWork(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
 		{
 			var lab = subject.LabWorks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
-			if (newValue == null)
-			{
-				if (lab != null)
-					db.LabWorks.Remove(lab);
-			}
+			if (lab != null)
+				lab.NotPassed = int.Parse(newValue);
 			else
 			{
-				if (lab != null)
-					lab.NotPassed = int.Parse(newValue);
-				else
-				{
-					db.LabWorks.Add(new LabWork { NotPassed = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher });
-				}
+				db.LabWorks.Add(new LabWork { NotPassed = int.Parse(newValue), Subject = subject, Student = student, ControlPoint = cp, Teacher = teacher });
 			}
 		}
 
