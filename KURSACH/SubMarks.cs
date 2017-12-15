@@ -30,11 +30,6 @@ namespace KURSACH
                 subjectComboBox.Items.Add(sub.Name);
             subjectComboBox.SelectedIndex = 0;
 
-            teachersComboBox.Items.Add("Все преподаватели");
-            foreach (var teacher in db.Teachers)
-                teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
-            teachersComboBox.SelectedIndex = 0;
-
             specialtyComboBox.Items.Add("Все специльности");
             foreach (var spec in db.Specialties)
                 specialtyComboBox.Items.Add(spec.Name);
@@ -213,7 +208,14 @@ namespace KURSACH
             {
                 selectedSubject = db.Subjects.FirstOrDefault(s => s.Name == subjectComboBox.SelectedItem.ToString());
                 teachersComboBox.Enabled = true;
-            }
+				teachersComboBox.Items.Clear();
+
+				teachersComboBox.Items.Add("Выберите преподавателя");
+				foreach (var teacher in db.Teachers)
+					if(teacher.Subjects.Contains(selectedSubject.Name))
+						teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
+				teachersComboBox.SelectedIndex = 0;
+			}
             else
             {
                 subjectMarksDataGrid.Enabled = false;
@@ -221,6 +223,7 @@ namespace KURSACH
                 absencesDataGrid.Enabled = false;
                 labWorksDataGrid.Enabled = false;
                 teachersComboBox.Enabled = false;
+				teachersComboBox.Items.Clear();
             }
             RefreshColumns();
         }
@@ -502,6 +505,11 @@ namespace KURSACH
 		private void seedToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			db.SeedDb(1);
+		}
+
+		private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			BL.StatsToExcel("file.xlsx", db);
 		}
 	}
 }

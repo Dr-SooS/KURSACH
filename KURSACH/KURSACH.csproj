@@ -181,6 +181,12 @@
     <Compile Include="Forms\CRUD Departments\DepartmentUpdate.Designer.cs">
       <DependentUpon>DepartmentUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CRUD Teachers\EditTeacherSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CRUD Teachers\EditTeacherSubject.Designer.cs">
+      <DependentUpon>EditTeacherSubject.cs</DependentUpon>
+    </Compile>
     <Compile Include="GroupStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +226,14 @@
     <Compile Include="Migrations\201709260831348_AddNoValueFieldToMark.cs" />
     <Compile Include="Migrations\201709260831348_AddNoValueFieldToMark.Designer.cs">
       <DependentUpon>201709260831348_AddNoValueFieldToMark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712150756231_teacherSubjects.cs" />
+    <Compile Include="Migrations\201712150756231_teacherSubjects.Designer.cs">
+      <DependentUpon>201712150756231_teacherSubjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712150757316_AddSubjectsToTeachers.cs" />
+    <Compile Include="Migrations\201712150757316_AddSubjectsToTeachers.Designer.cs">
+      <DependentUpon>201712150757316_AddSubjectsToTeachers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -303,6 +317,9 @@
     <EmbeddedResource Include="Forms\CRUD Departments\DepartmentUpdate.resx">
       <DependentUpon>DepartmentUpdate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CRUD Teachers\EditTeacherSubject.resx">
+      <DependentUpon>EditTeacherSubject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GroupStatistics.resx">
       <DependentUpon>GroupStatistics.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +346,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709260831348_AddNoValueFieldToMark.resx">
       <DependentUpon>201709260831348_AddNoValueFieldToMark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712150756231_teacherSubjects.resx">
+      <DependentUpon>201712150756231_teacherSubjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712150757316_AddSubjectsToTeachers.resx">
+      <DependentUpon>201712150757316_AddSubjectsToTeachers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -27,7 +27,10 @@ namespace KURSACH
 
 		public static void EditMark(CollegeContext db, ControlPoint cp, Student student, Subject subject, Teacher teacher, string newValue)
 		{
-			var mark = subject.Marks.FirstOrDefault(m => m.ControlPoint.ControlPointId == cp.ControlPointId && m.Student.StudentId == student.StudentId && m.Teacher.TeacherId == teacher.TeacherId);
+			var mark = subject.Marks.FirstOrDefault(
+				m => m.ControlPoint.ControlPointId == cp.ControlPointId 
+				&& m.Student.StudentId == student.StudentId 
+				&& m.Teacher.TeacherId == teacher.TeacherId);
 			if (mark != null)
 				if (newValue == "-")
 					mark.NoValue = true;
@@ -121,7 +124,7 @@ namespace KURSACH
 			return c;
 		}
 
-		public static List<Tuple<Teacher, Subject>> GetGroupProblemSubjectsTeschers(CollegeContext db, Group group, ControlPoint cp)
+		public static List<Tuple<Teacher, Subject>> GetGroupProblemSubjectsTeфchers(CollegeContext db, Group group, ControlPoint cp)
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
 			foreach (var mark in db.Marks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
@@ -185,8 +188,16 @@ namespace KURSACH
 		{
 			ExcelPackage ExcelPkg = new ExcelPackage();
 			ExcelWorksheet wsSheet1 = ExcelPkg.Workbook.Worksheets.Add("Sheet1");
-			//
-			ExcelPkg.SaveAs(new FileInfo(@"C:\KURSACH\s.xlsx"));
+
+			var groups = db.Groups.ToList();
+
+			for (int i = 1; i <= groups.Count; i++)
+			{
+				wsSheet1.Cells[i, 1].Value = groups[i - 1].Number;
+			}
+				
+
+			ExcelPkg.SaveAs(new FileInfo(@"C:\Users\vdobritski\Desktop\KURSACH\" + filename));
 		}
 	}
 }

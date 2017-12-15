@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KURSACH.Forms.CRUD_Teachers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,10 @@ namespace KURSACH
     public partial class TeacherUpdate : Form
     {
 
-        CollegeContext db;
+        public CollegeContext db;
         Teacher selectedTeacher;
+		public string teacherSubjects;
+		public Subject selectedSubject;
         public TeacherUpdate()
         {
             InitializeComponent();
@@ -23,6 +26,8 @@ namespace KURSACH
         public TeacherUpdate(CollegeContext db)
         {
             InitializeComponent();
+
+			teacherSubjects = "";
 
 			textBox1.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
 			textBox2.KeyPress += new KeyPressEventHandler(Helper.ValidateLetter);
@@ -46,6 +51,7 @@ namespace KURSACH
                 textBox1.Text = selectedTeacher.FirstName;
                 textBox2.Text = selectedTeacher.MiddleName;
                 textBox3.Text = selectedTeacher.LastName;
+				teacherSubjects = selectedTeacher.Subjects;
 
                 button1.Enabled = true;
             }
@@ -62,9 +68,27 @@ namespace KURSACH
 				selectedTeacher.FirstName = textBox1.Text;
 				selectedTeacher.MiddleName = textBox2.Text;
 				selectedTeacher.LastName = textBox3.Text;
+				selectedTeacher.Subjects = teacherSubjects.Remove(teacherSubjects.Length - 1);
 				db.SaveChanges();
 				Close();
 			}
         }
-    }
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			new EditTeacherSubject(this, true).ShowDialog();
+			teacherSubjects += $"{selectedSubject.Name};";
+		}
+
+		private void button4_Click(object sender, EventArgs e)
+		{
+			new EditTeacherSubject(this, false).ShowDialog();
+			teacherSubjects = teacherSubjects.Remove(teacherSubjects.Length - 1);
+			var subjectsArray = teacherSubjects.Split(';');
+			teacherSubjects = "";
+			foreach (var subject in subjectsArray)
+				if (subject != selectedSubject.Name)
+					teacherSubjects += $"{subject};";
+		}
+	}
 }

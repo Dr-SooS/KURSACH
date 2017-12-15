@@ -66,7 +66,7 @@ namespace KURSACH
 				lowMarksLabel.Text = BL.CountStudentsWithBadMarks(db, selectedGroup, selectedCP).ToString();
 				notAllLabsLabel.Text = BL.CountStudentsWithNotPassedLabs(db, selectedGroup, selectedCP).ToString();
 				manyAbsLabel.Text = BL.CountStudentsWithALotOfAbsences(db, selectedGroup, selectedCP).ToString();
-				foreach (var problem in BL.GetGroupProblemSubjectsTeschers(db, selectedGroup, selectedCP))
+				foreach (var problem in BL.GetGroupProblemSubjectsTeфchers(db, selectedGroup, selectedCP))
 					groupProblemsRichTextBox.AppendText(problem.Item1.LastName + " - " + problem.Item2.Name + Environment.NewLine);
 			}
 		}
