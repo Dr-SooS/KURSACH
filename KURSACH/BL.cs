@@ -124,18 +124,18 @@ namespace KURSACH
 			return c;
 		}
 
-		public static List<Tuple<Teacher, Subject>> GetGroupProblemSubjectsTeфchers(CollegeContext db, Group group, ControlPoint cp)
+		public static List<Tuple<Teacher, Subject>> GetGroupProblemSubjectsTeachers(CollegeContext db, Group group, ControlPoint cp)
 		{
 			var res = new List<Tuple<Teacher, Subject>>();
-			foreach (var mark in db.Marks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
+			foreach (var mark in db.Marks.ToList().Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
 				if (!res.Contains(Tuple.Create(mark.Teacher, mark.Subject)) && MarkIsBad(mark))
 					res.Add(Tuple.Create(mark.Teacher, mark.Subject));
 
-			foreach (var lab in db.LabWorks.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
+			foreach (var lab in db.LabWorks.ToList().Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
 				if (!res.Contains(Tuple.Create(lab.Teacher, lab.Subject)) && LabWorkIsBad(lab))
 					res.Add(Tuple.Create(lab.Teacher, lab.Subject));
 
-			foreach (var abs in db.Absences.Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
+			foreach (var abs in db.Absences.ToList().Where(m => m.Student.Group.GroupId == group.GroupId && m.ControlPoint.ControlPointId == cp.ControlPointId))
 				if (!res.Contains(Tuple.Create(abs.Teacher, abs.Subject)) && AbsenceIsBad(abs))
 					res.Add(Tuple.Create(abs.Teacher, abs.Subject));
 
@@ -184,7 +184,7 @@ namespace KURSACH
 			return marks.Zip(abs.Zip(labs, Tuple.Create), (mark, tuple) => new { Mark = mark, Absence = tuple.Item1, LabWork = tuple.Item2 });
 		}
 
-		public static void StatsToExcel(string filename, CollegeContext db)
+		public static void StatsToExcel(string filename, CollegeContext db, ControlPoint cp)
 		{
 			ExcelPackage ExcelPkg = new ExcelPackage();
 			ExcelWorksheet wsSheet1 = ExcelPkg.Workbook.Worksheets.Add("Sheet1");
@@ -194,6 +194,9 @@ namespace KURSACH
 			for (int i = 1; i <= groups.Count; i++)
 			{
 				wsSheet1.Cells[i, 1].Value = groups[i - 1].Number;
+				wsSheet1.Cells[i, 2].Value = $"{CountStudentsWithBadMarks(db, groups[i - 1], cp)} ({CountStudentsWithBadMarks(db, groups[i - 1], cp) / groups[i - 1].Students.Count * 100}%)";
+				wsSheet1.Cells[i, 3].Value = CountStudentsWithNotPassedLabs(db, groups[i - 1], cp);
+				wsSheet1.Cells[i, 4].Value = CountStudentsWithALotOfAbsences(db, groups[i - 1], cp);
 			}
 				
 

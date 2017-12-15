@@ -509,7 +509,8 @@ namespace KURSACH
 
 		private void exportToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			BL.StatsToExcel("file.xlsx", db);
+			var date = DateTime.ParseExact(subjectMarksDataGrid.Columns[3].HeaderText, "dd.MM yyyy", null);
+			BL.StatsToExcel("file.xlsx", db, db.ControlPoints.FirstOrDefault(c => c.Date == date));
 		}
 	}
 }
