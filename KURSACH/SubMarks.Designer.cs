@@ -73,6 +73,7 @@
 			this.удалитьСтудентаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.статистикаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.seedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.marksTabPage = new System.Windows.Forms.TabPage();
 			this.absencesTabPage = new System.Windows.Forms.TabPage();
@@ -84,7 +85,6 @@
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.subjectMarksDataGrid)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -111,7 +111,7 @@
 			// 
 			this.specialtyComboBox.FormattingEnabled = true;
 			this.specialtyComboBox.Location = new System.Drawing.Point(583, 12);
-			this.specialtyComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.specialtyComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.specialtyComboBox.Name = "specialtyComboBox";
 			this.specialtyComboBox.Size = new System.Drawing.Size(219, 21);
 			this.specialtyComboBox.TabIndex = 3;
@@ -131,7 +131,7 @@
 			// 
 			this.groupComboBox.FormattingEnabled = true;
 			this.groupComboBox.Location = new System.Drawing.Point(857, 12);
-			this.groupComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.groupComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.groupComboBox.Name = "groupComboBox";
 			this.groupComboBox.Size = new System.Drawing.Size(92, 21);
 			this.groupComboBox.TabIndex = 4;
@@ -151,7 +151,7 @@
 			// 
 			this.subjectComboBox.FormattingEnabled = true;
 			this.subjectComboBox.Location = new System.Drawing.Point(68, 10);
-			this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.subjectComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.subjectComboBox.Name = "subjectComboBox";
 			this.subjectComboBox.Size = new System.Drawing.Size(92, 21);
 			this.subjectComboBox.TabIndex = 1;
@@ -170,7 +170,7 @@
 			this.panel1.Controls.Add(this.specialtyListLabel);
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(0, 24);
-			this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel1.Margin = new System.Windows.Forms.Padding(2);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1157, 41);
 			this.panel1.TabIndex = 9;
@@ -189,7 +189,7 @@
 			// 
 			this.teachersComboBox.FormattingEnabled = true;
 			this.teachersComboBox.Location = new System.Drawing.Point(263, 10);
-			this.teachersComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.teachersComboBox.Margin = new System.Windows.Forms.Padding(2);
 			this.teachersComboBox.Name = "teachersComboBox";
 			this.teachersComboBox.Size = new System.Drawing.Size(211, 21);
 			this.teachersComboBox.TabIndex = 2;
@@ -199,7 +199,7 @@
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.saveButton.Location = new System.Drawing.Point(1069, 10);
-			this.saveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.saveButton.Margin = new System.Windows.Forms.Padding(2);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(79, 26);
 			this.saveButton.TabIndex = 6;
@@ -217,7 +217,7 @@
             this.gropColumn});
 			this.subjectMarksDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.subjectMarksDataGrid.Location = new System.Drawing.Point(2, 2);
-			this.subjectMarksDataGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.subjectMarksDataGrid.Margin = new System.Windows.Forms.Padding(2);
 			this.subjectMarksDataGrid.Name = "subjectMarksDataGrid";
 			this.subjectMarksDataGrid.Size = new System.Drawing.Size(1145, 515);
 			this.subjectMarksDataGrid.TabIndex = 11;
@@ -503,6 +503,13 @@
 			this.seedToolStripMenuItem.Text = "seed";
 			this.seedToolStripMenuItem.Click += new System.EventHandler(this.seedToolStripMenuItem_Click);
 			// 
+			// exportToolStripMenuItem
+			// 
+			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+			this.exportToolStripMenuItem.Text = "Export";
+			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
+			// 
 			// tabControl
 			// 
 			this.tabControl.Controls.Add(this.marksTabPage);
@@ -510,7 +517,7 @@
 			this.tabControl.Controls.Add(this.labWorksTabPage);
 			this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabControl.Location = new System.Drawing.Point(0, 0);
-			this.tabControl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabControl.Margin = new System.Windows.Forms.Padding(2);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
 			this.tabControl.Size = new System.Drawing.Size(1157, 545);
@@ -520,9 +527,9 @@
 			// 
 			this.marksTabPage.Controls.Add(this.subjectMarksDataGrid);
 			this.marksTabPage.Location = new System.Drawing.Point(4, 22);
-			this.marksTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.marksTabPage.Margin = new System.Windows.Forms.Padding(2);
 			this.marksTabPage.Name = "marksTabPage";
-			this.marksTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.marksTabPage.Padding = new System.Windows.Forms.Padding(2);
 			this.marksTabPage.Size = new System.Drawing.Size(1149, 519);
 			this.marksTabPage.TabIndex = 0;
 			this.marksTabPage.Text = "Оценки";
@@ -532,10 +539,10 @@
 			// 
 			this.absencesTabPage.Controls.Add(this.absencesDataGrid);
 			this.absencesTabPage.Location = new System.Drawing.Point(4, 22);
-			this.absencesTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.absencesTabPage.Margin = new System.Windows.Forms.Padding(2);
 			this.absencesTabPage.Name = "absencesTabPage";
-			this.absencesTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.absencesTabPage.Size = new System.Drawing.Size(1149, 521);
+			this.absencesTabPage.Padding = new System.Windows.Forms.Padding(2);
+			this.absencesTabPage.Size = new System.Drawing.Size(1149, 519);
 			this.absencesTabPage.TabIndex = 1;
 			this.absencesTabPage.Text = "Пропуски";
 			this.absencesTabPage.UseVisualStyleBackColor = true;
@@ -550,9 +557,9 @@
             this.dataGridViewTextBoxColumn2});
 			this.absencesDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.absencesDataGrid.Location = new System.Drawing.Point(2, 2);
-			this.absencesDataGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.absencesDataGrid.Margin = new System.Windows.Forms.Padding(2);
 			this.absencesDataGrid.Name = "absencesDataGrid";
-			this.absencesDataGrid.Size = new System.Drawing.Size(1145, 517);
+			this.absencesDataGrid.Size = new System.Drawing.Size(1145, 515);
 			this.absencesDataGrid.TabIndex = 22;
 			this.absencesDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.absencesDataGrid_CellEndEdit);
 			this.absencesDataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.absencesDataGrid_EditingControlShowing);
@@ -579,10 +586,10 @@
 			// 
 			this.labWorksTabPage.Controls.Add(this.labWorksDataGrid);
 			this.labWorksTabPage.Location = new System.Drawing.Point(4, 22);
-			this.labWorksTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.labWorksTabPage.Margin = new System.Windows.Forms.Padding(2);
 			this.labWorksTabPage.Name = "labWorksTabPage";
-			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.labWorksTabPage.Size = new System.Drawing.Size(1149, 521);
+			this.labWorksTabPage.Padding = new System.Windows.Forms.Padding(2);
+			this.labWorksTabPage.Size = new System.Drawing.Size(1149, 519);
 			this.labWorksTabPage.TabIndex = 2;
 			this.labWorksTabPage.Text = "ЛР";
 			this.labWorksTabPage.UseVisualStyleBackColor = true;
@@ -597,9 +604,9 @@
             this.dataGridViewTextBoxColumn4});
 			this.labWorksDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.labWorksDataGrid.Location = new System.Drawing.Point(2, 2);
-			this.labWorksDataGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.labWorksDataGrid.Margin = new System.Windows.Forms.Padding(2);
 			this.labWorksDataGrid.Name = "labWorksDataGrid";
-			this.labWorksDataGrid.Size = new System.Drawing.Size(1145, 517);
+			this.labWorksDataGrid.Size = new System.Drawing.Size(1145, 515);
 			this.labWorksDataGrid.TabIndex = 33;
 			this.labWorksDataGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.labWorksDataGrid_CellEndEdit);
 			this.labWorksDataGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.labWorksDataGrid_EditingControlShowing);
@@ -627,17 +634,10 @@
 			this.panel2.Controls.Add(this.tabControl);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(0, 65);
-			this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.panel2.Margin = new System.Windows.Forms.Padding(2);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1157, 545);
 			this.panel2.TabIndex = 12;
-			// 
-			// exportToolStripMenuItem
-			// 
-			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-			this.exportToolStripMenuItem.Text = "Export";
-			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// SubMarks
 			// 
@@ -647,7 +647,7 @@
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.menuStrip1);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "SubMarks";
 			this.Text = "SubMarks";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -676,7 +676,6 @@
         private System.Windows.Forms.Label subjectListLabel;
         private System.Windows.Forms.ComboBox subjectComboBox;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView subjectMarksDataGrid;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label teacherListLabel;
         private System.Windows.Forms.ComboBox teachersComboBox;
@@ -714,11 +713,9 @@
 		private System.Windows.Forms.TabPage marksTabPage;
 		private System.Windows.Forms.TabPage absencesTabPage;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.DataGridView absencesDataGrid;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
 		private System.Windows.Forms.TabPage labWorksTabPage;
-		private System.Windows.Forms.DataGridView labWorksDataGrid;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
 		private System.Windows.Forms.ToolStripMenuItem статистикаToolStripMenuItem;
@@ -726,5 +723,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn gropColumn;
 		private System.Windows.Forms.ToolStripMenuItem seedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+		public System.Windows.Forms.DataGridView subjectMarksDataGrid;
+		public System.Windows.Forms.DataGridView absencesDataGrid;
+		public System.Windows.Forms.DataGridView labWorksDataGrid;
 	}
 }

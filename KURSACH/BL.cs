@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OfficeOpenXml;
+using System.Windows.Forms;
 
 namespace KURSACH
 {
@@ -184,49 +185,91 @@ namespace KURSACH
 			return marks.Zip(abs.Zip(labs, Tuple.Create), (mark, tuple) => new { Mark = mark, Absence = tuple.Item1, LabWork = tuple.Item2 });
 		}
 
-		public static void StatsToExcel(string filename, CollegeContext db, ControlPoint cp)
+		public static void ExportDataGrid(ExcelWorksheet ws, DataGridView dg)
 		{
-			ExcelPackage ExcelPkg = new ExcelPackage();
-			ExcelWorksheet wsSheet1 = ExcelPkg.Workbook.Worksheets.Add("Sheet1");
-
-			var groups = db.Groups.ToList();
-
-			wsSheet1.Cells[1, 1].Value = "# группы";
-			wsSheet1.Cells[1, 2].Value = "Количество учащихся";
-			wsSheet1.Cells[1, 3].Value = "Кол-во уч-ся, которые имеют отрицательные отметки";
-			wsSheet1.Cells[1, 4].Value = "Кол-во уч-ся, которые имеют много пропусков";
-			wsSheet1.Cells[1, 5].Value = "кол-во уч-ся, у которых есть не сданные л.р.";
-
-			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-
-			wsSheet1.Cells[1, 3, 1, 5].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
-			wsSheet1.Cells[1, 1, 1, 2].Style.TextRotation = 90;
-			wsSheet1.Cells[1, 3, 1, 5].Style.WrapText = true;
-
-			wsSheet1.Column(3).Width = 20;
-			wsSheet1.Column(4).Width = 20;
-			wsSheet1.Column(5).Width = 20;
-
-			for (int i = 2; i <= groups.Count + 1; i++)
+			for (int i = 1; i < dg.ColumnCount + 1; i++)
 			{
-				var marks = (double)CountStudentsWithBadMarks(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
-				var abs = (double)CountStudentsWithALotOfAbsences(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
-				var labs = (double)CountStudentsWithNotPassedLabs(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
-				wsSheet1.Cells[i, 1].Value = groups[i - 2].Number;
-				wsSheet1.Cells[i, 2].Value = groups[i - 2].Students.Count;
-				wsSheet1.Cells[i, 3].Value = $"{CountStudentsWithBadMarks(db, groups[i - 2], cp)} ({marks}%)";
-				wsSheet1.Cells[i, 4].Value = $"{CountStudentsWithNotPassedLabs(db, groups[i - 2], cp)} ({abs}%)";
-				wsSheet1.Cells[i, 5].Value = $"{CountStudentsWithALotOfAbsences(db, groups[i - 2], cp)} ({labs}%)";
+				ws.Cells[1, i].Value = dg.Columns[i - 1].HeaderText;
 
-				wsSheet1.Cells[i, 1, i, 5].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-				wsSheet1.Cells[i, 1, i, 5].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-				wsSheet1.Cells[i, 1, i, 5].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-				wsSheet1.Cells[i, 1, i, 5].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				ws.Cells[1, i].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				ws.Cells[1, i].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				ws.Cells[1, i].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				ws.Cells[1, i].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
 			}
-				
+
+			for (int i = 0; i < dg.RowCount - 1; i++)
+				for (int j = 0; j < dg.ColumnCount; j++)
+				{
+					ws.Cells[i + 2, j + 1].Value = dg[j, i].Value.ToString();
+
+					ws.Cells[i + 2, j + 1].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+					ws.Cells[i + 2, j + 1].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+					ws.Cells[i + 2, j + 1].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+					ws.Cells[i + 2, j + 1].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				}
+		}
+
+		public static void StatsToExcel(string filename, SubMarks form)
+		{
+			var marks = form.subjectMarksDataGrid;
+
+			ExcelPackage ExcelPkg = new ExcelPackage();
+
+			ExcelWorksheet wsSheet1 = ExcelPkg.Workbook.Worksheets.Add("Marks");
+			ExcelWorksheet wsSheet2 = ExcelPkg.Workbook.Worksheets.Add("Abs");
+			ExcelWorksheet wsSheet3 = ExcelPkg.Workbook.Worksheets.Add("Labs");
+
+			ExportDataGrid(wsSheet1, form.subjectMarksDataGrid);
+			ExportDataGrid(wsSheet2, form.absencesDataGrid);
+			ExportDataGrid(wsSheet3, form.labWorksDataGrid);
+
+			wsSheet1.Column(1).Width = 30;
+			wsSheet2.Column(1).Width = 30;
+			wsSheet3.Column(1).Width = 30;
+
+			wsSheet1.Cells[1, 3, 1, 10].Style.WrapText = true;
+			wsSheet2.Cells[1, 3, 1, 10].Style.WrapText = true;
+			wsSheet3.Cells[1, 3, 1, 10].Style.WrapText = true;
+
+
+			//var groups = db.Groups.ToList();
+
+			//wsSheet1.Cells[1, 1].Value = "# группы";
+			//wsSheet1.Cells[1, 2].Value = "Количество учащихся";
+			//wsSheet1.Cells[1, 3].Value = "Кол-во уч-ся, которые имеют отрицательные отметки";
+			//wsSheet1.Cells[1, 4].Value = "Кол-во уч-ся, которые имеют много пропусков";
+			//wsSheet1.Cells[1, 5].Value = "кол-во уч-ся, у которых есть не сданные л.р.";
+
+			//wsSheet1.Cells[1, 1, 1, 5].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//wsSheet1.Cells[1, 1, 1, 5].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//wsSheet1.Cells[1, 1, 1, 5].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//wsSheet1.Cells[1, 1, 1, 5].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+			//wsSheet1.Cells[1, 3, 1, 5].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+			//wsSheet1.Cells[1, 1, 1, 2].Style.TextRotation = 90;
+			//wsSheet1.Cells[1, 3, 1, 5].Style.WrapText = true;
+
+			//wsSheet1.Column(3).Width = 20;
+			//wsSheet1.Column(4).Width = 20;
+			//wsSheet1.Column(5).Width = 20;
+
+			//for (int i = 2; i <= groups.Count + 1; i++)
+			//{
+			//	var marks = (double)CountStudentsWithBadMarks(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
+			//	var abs = (double)CountStudentsWithALotOfAbsences(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
+			//	var labs = (double)CountStudentsWithNotPassedLabs(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
+			//	wsSheet1.Cells[i, 1].Value = groups[i - 2].Number;
+			//	wsSheet1.Cells[i, 2].Value = groups[i - 2].Students.Count;
+			//	wsSheet1.Cells[i, 3].Value = $"{CountStudentsWithBadMarks(db, groups[i - 2], cp)} ({marks}%)";
+			//	wsSheet1.Cells[i, 4].Value = $"{CountStudentsWithNotPassedLabs(db, groups[i - 2], cp)} ({abs}%)";
+			//	wsSheet1.Cells[i, 5].Value = $"{CountStudentsWithALotOfAbsences(db, groups[i - 2], cp)} ({labs}%)";
+
+			//	wsSheet1.Cells[i, 1, i, 5].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//	wsSheet1.Cells[i, 1, i, 5].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//	wsSheet1.Cells[i, 1, i, 5].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//	wsSheet1.Cells[i, 1, i, 5].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			//}
+
 
 			ExcelPkg.SaveAs(new FileInfo(filename));
 		}

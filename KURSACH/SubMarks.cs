@@ -34,7 +34,10 @@ namespace KURSACH
             foreach (var spec in db.Specialties)
                 specialtyComboBox.Items.Add(spec.Name);
             specialtyComboBox.SelectedIndex = 0;
+
+			exportToolStripMenuItem.Enabled = false;
         }
+
 
         public void LoadMarks()
         {
@@ -215,6 +218,8 @@ namespace KURSACH
 					if(teacher.Subjects.Contains(selectedSubject.Name))
 						teachersComboBox.Items.Add(teacher.LastName + " " + teacher.FirstName + " " + teacher.MiddleName);
 				teachersComboBox.SelectedIndex = 0;
+
+				exportToolStripMenuItem.Enabled = true;
 			}
             else
             {
@@ -223,6 +228,7 @@ namespace KURSACH
                 absencesDataGrid.Enabled = false;
                 labWorksDataGrid.Enabled = false;
                 teachersComboBox.Enabled = false;
+				exportToolStripMenuItem.Enabled = false;
 				teachersComboBox.Items.Clear();
             }
             RefreshColumns();
@@ -509,7 +515,15 @@ namespace KURSACH
 
 		private void exportToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			new ExportManager(db).ShowDialog();
+			SaveFileDialog sfd = new SaveFileDialog();
+			if (sfd.ShowDialog() == DialogResult.OK)
+			{
+				BL.StatsToExcel(sfd.FileName, this);
+			}
+			else
+			{
+
+			}
 		}
 	}
 }
