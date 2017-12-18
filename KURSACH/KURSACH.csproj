@@ -71,6 +71,12 @@
   <ItemGroup>
     <Compile Include="BL.cs" />
     <Compile Include="Entities\Absence.cs" />
+    <Compile Include="ExportManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportManager.Designer.cs">
+      <DependentUpon>ExportManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CRUD Departments\DepartmentCreate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +275,9 @@
     <Compile Include="Forms\CRUD Subjects\SubjectUpdate.Designer.cs">
       <DependentUpon>SubjectUpdate.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ExportManager.resx">
+      <DependentUpon>ExportManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CRUD Departments\DepartmentCreate.resx">
       <DependentUpon>DepartmentCreate.cs</DependentUpon>
     </EmbeddedResource>

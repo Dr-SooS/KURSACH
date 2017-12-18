@@ -191,16 +191,44 @@ namespace KURSACH
 
 			var groups = db.Groups.ToList();
 
-			for (int i = 1; i <= groups.Count; i++)
+			wsSheet1.Cells[1, 1].Value = "# группы";
+			wsSheet1.Cells[1, 2].Value = "Количество учащихся";
+			wsSheet1.Cells[1, 3].Value = "Кол-во уч-ся, которые имеют отрицательные отметки";
+			wsSheet1.Cells[1, 4].Value = "Кол-во уч-ся, которые имеют много пропусков";
+			wsSheet1.Cells[1, 5].Value = "кол-во уч-ся, у которых есть не сданные л.р.";
+
+			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+			wsSheet1.Cells[1, 1, 1, 5].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+			wsSheet1.Cells[1, 3, 1, 5].Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+			wsSheet1.Cells[1, 1, 1, 2].Style.TextRotation = 90;
+			wsSheet1.Cells[1, 3, 1, 5].Style.WrapText = true;
+
+			wsSheet1.Column(3).Width = 20;
+			wsSheet1.Column(4).Width = 20;
+			wsSheet1.Column(5).Width = 20;
+
+			for (int i = 2; i <= groups.Count + 1; i++)
 			{
-				wsSheet1.Cells[i, 1].Value = groups[i - 1].Number;
-				wsSheet1.Cells[i, 2].Value = $"{CountStudentsWithBadMarks(db, groups[i - 1], cp)} ({CountStudentsWithBadMarks(db, groups[i - 1], cp) / groups[i - 1].Students.Count * 100}%)";
-				wsSheet1.Cells[i, 3].Value = CountStudentsWithNotPassedLabs(db, groups[i - 1], cp);
-				wsSheet1.Cells[i, 4].Value = CountStudentsWithALotOfAbsences(db, groups[i - 1], cp);
+				var marks = (double)CountStudentsWithBadMarks(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
+				var abs = (double)CountStudentsWithALotOfAbsences(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
+				var labs = (double)CountStudentsWithNotPassedLabs(db, groups[i - 2], cp) / groups[i - 2].Students.Count * 100;
+				wsSheet1.Cells[i, 1].Value = groups[i - 2].Number;
+				wsSheet1.Cells[i, 2].Value = groups[i - 2].Students.Count;
+				wsSheet1.Cells[i, 3].Value = $"{CountStudentsWithBadMarks(db, groups[i - 2], cp)} ({marks}%)";
+				wsSheet1.Cells[i, 4].Value = $"{CountStudentsWithNotPassedLabs(db, groups[i - 2], cp)} ({abs}%)";
+				wsSheet1.Cells[i, 5].Value = $"{CountStudentsWithALotOfAbsences(db, groups[i - 2], cp)} ({labs}%)";
+
+				wsSheet1.Cells[i, 1, i, 5].Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				wsSheet1.Cells[i, 1, i, 5].Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				wsSheet1.Cells[i, 1, i, 5].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+				wsSheet1.Cells[i, 1, i, 5].Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
 			}
 				
 
-			ExcelPkg.SaveAs(new FileInfo(@"C:\Users\vdobritski\Desktop\KURSACH\" + filename));
+			ExcelPkg.SaveAs(new FileInfo(filename));
 		}
 	}
 }
